@@ -2,6 +2,7 @@
 
 return [
 
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -34,7 +35,7 @@ return [
     | Supported: "session", "token"
     |
     */
-
+    
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -52,11 +53,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
         ],
+///////////        
     ],
 
     /*
@@ -83,13 +84,12 @@ return [
         ],
 
         /*adicionando suporte à autenticação de admin */
-
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
         // 'users' => [
-        //     'driver' => 'database',
+        //     'driver' => 'database',   // ======>>>>> utiliza o query builder
         //     'table' => 'users',
         // ],
     ],
@@ -113,16 +113,15 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 60,   // minutos
         ],
-
+ 
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],
+    
     ],
-
-  
 
 ];
