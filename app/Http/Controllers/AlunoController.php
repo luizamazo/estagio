@@ -24,8 +24,8 @@ class AlunoController extends Controller
     
     public function index()
     {
-        // $alu = Aluno::all();
-        //return view('alunos', compact('pro'));
+        $alu = Aluno::all();
+        return view('alunos', compact('alu'));
     }
 
     /**
@@ -50,14 +50,16 @@ class AlunoController extends Controller
         $alu->nome = $request->input('nome');
         $alu->nascimento = $request->input('nascimento');
         $alu->rga = $request->input('rga');
-       // $alu->cpf = $request->input('cpf');
-       // $alu->rg = $request->input('rg');
-       // $alu->curso_nome = $request->input('cursoNome');
-       // $alu->curso_inst = $request->input('cursoInst');
-       // $alu->inst_campus = $request->input('instCampus');
-       // $alu->naturalidade = $request->input('naturalidade');
-       // $alu->telefone = $request->input('telefone');
-       // $alu->semestre = $request->input('semestre');
+        $alu->cpf = $request->input('cpf');
+        $alu->rg = $request->input('rg');
+        $alu->contato = $request->input('contato');
+        $alu->endereco = $request->input('endereco');
+        $alu->cidade = $request->input('cidade');
+        $alu->cep = $request->input('cep');
+        $alu->instituicao = $request->input('instituicao');
+        $alu->campus = $request->input('campus');
+        $alu->curso = $request->input('curso');
+        $alu->semestre = $request->input('semestre');
         $alu->email = $request->input('email');
         $email =  $request->input('email');
         
@@ -77,8 +79,9 @@ class AlunoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {  
+        $alu = Aluno::findOrFail($id);
+        return view('aluno-id', compact('alu'));
     }
 
     /**

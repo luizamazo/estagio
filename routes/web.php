@@ -28,6 +28,7 @@ Route::prefix('/admin')->group(function() {
 Route::get('/alunos', 'AlunoController@index')->name('alunos');
 Route::get('/cadastro-aluno', 'AlunoController@create')->name('cadastro.aluno.form');
 Route::post('/cadastro-aluno', 'AlunoController@store')->name('cadastro.aluno.submit');
+Route::get('/alunos/show/{id}', 'AlunoController@show')->name('mostrar.aluno');
 
 
 
