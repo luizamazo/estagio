@@ -25,7 +25,9 @@ Route::prefix('/admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-
+Route::get('/alunos', 'AlunoController@index')->name('alunos');
+Route::get('/cadastro-aluno', 'AlunoController@create')->name('cadastro.aluno.form');
+Route::post('/cadastro-aluno', 'AlunoController@store')->name('cadastro.aluno.submit');
 
 
 
