@@ -81,7 +81,10 @@ class AlunoController extends Controller
     public function show($id)
     {  
         //esta MERDA nao ta funcionando
-        $aluno = Aluno::where('id', $id)->first();
+        $aluno = Aluno::where('id', $id)->get();
+         //pra pegar nome das colunas -  $colunas = new Aluno();
+        // $colun = $colunas->getTableColumns();
+        
         return view('aluno-id', compact('aluno'));
     }
 
@@ -93,8 +96,14 @@ class AlunoController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $alu = Aluno::find($id);
+        if(isset($alu)) {
+            return view('editaraluno', compact('alu'));
+        }
+        return redirect('/aluno-id');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -105,7 +114,24 @@ class AlunoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alu = Aluno::find($id);
+        if(isset($alu)) {
+            $alu->nome = $request->input('nome');
+            $alu->nascimento = $request->input('nascimento');
+            $alu->rga = $request->input('rga');
+            $alu->cpf = $request->input('cpf');
+            $alu->rg = $request->input('rg');
+            $alu->contato = $request->input('contato');
+            $alu->endereco = $request->input('endereco');
+            $alu->cidade = $request->input('cidade');
+            $alu->cep = $request->input('cep');
+            $alu->instituicao = $request->input('instituicao');
+            $alu->campus = $request->input('campus');
+            $alu->curso = $request->input('curso');
+            $alu->semestre = $request->input('semestre');
+            $alu->save();
+        }
+        return redirect('/alunos/show/{id}');
     }
 
     /**
@@ -116,6 +142,10 @@ class AlunoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $alu = Aluno::find($id);
+        if (isset($alu)) {
+            $alu->delete();
+        }
+        return redirect('/alunos');
     }
 }

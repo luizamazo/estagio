@@ -29,6 +29,10 @@ Route::get('/alunos', 'AlunoController@index')->name('alunos');
 Route::get('/cadastro-aluno', 'AlunoController@create')->name('cadastro.aluno.form');
 Route::post('/cadastro-aluno', 'AlunoController@store')->name('cadastro.aluno.submit');
 Route::get('/alunos/show/{id}', 'AlunoController@show')->name('mostrar.aluno');
+Route::get('/alunos/editar/{id}', 'AlunoController@edit')->name('editar.aluno.form');
+Route::post('/alunos/editar/{id}', 'AlunoController@update')->name('editar.aluno.submit');
+Route::get('/alunos/apagar/{id}', 'AlunoController@destroy');
+
 
 
 

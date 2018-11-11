@@ -10,4 +10,8 @@ class Aluno extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
 }

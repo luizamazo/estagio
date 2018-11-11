@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('CADASTRO DE ALUNO') }}</div>
+                <div class="card-header">{{ __('EDITAR ALUNO') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/cadastro-aluno">
+                    <form method="POST" action="/alunos/editar/{{$alu->id}}">
                         @csrf
 
                         <div class="form-group">
@@ -27,9 +27,6 @@
                             <label for="rg">RG</label>
                             <input type="text" class="form-control" name="rg" placeholder="RG">
                             
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="exemplo@exemplo.com">
-
                             <label for="contato">Contato</label>
                             <input type="text" class="form-control" name="contato" placeholder="Contato">
 
@@ -56,7 +53,7 @@
 
                            
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                         <button type="cancel" class="btn btn-danger btn-sm">Cancelar</button>
                     </form>
                 </div>
