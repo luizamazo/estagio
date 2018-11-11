@@ -80,8 +80,9 @@ class AlunoController extends Controller
      */
     public function show($id)
     {  
-        $alu = Aluno::findOrFail($id);
-        return view('aluno-id', compact('alu'));
+        //esta MERDA nao ta funcionando
+        $aluno = Aluno::where('id', $id)->first();
+        return view('aluno-id', compact('aluno'));
     }
 
     /**
