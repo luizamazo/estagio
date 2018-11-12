@@ -15,6 +15,21 @@ class CreateCoordenadorsTable extends Migration
     {
         Schema::create('coordenadors', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nome');
+            $table->date('nascimento');
+            $table->string('cpf')->unique();;
+            $table->integer('rg')->unique();;
+            $table->string('contato');
+            $table->string('instituicao');
+            $table->string('campus');
+            $table->string('curso');
+            $table->string('cargo');
+            $table->string('siape');
+           
+
+            $table->string('email')->unique();
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

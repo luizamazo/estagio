@@ -25,7 +25,7 @@ class AlunoController extends Controller
     public function index()
     {
         $alu = Aluno::all();
-        return view('alunos', compact('alu'));
+        return view('aluno.alunos', compact('alu'));
     }
 
     /**
@@ -35,7 +35,7 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        return view('novoaluno');
+        return view('aluno.novoaluno');
     }
 
     /**
@@ -85,7 +85,7 @@ class AlunoController extends Controller
          //pra pegar nome das colunas -  $colunas = new Aluno();
         // $colun = $colunas->getTableColumns();
         
-        return view('aluno-id', compact('aluno'));
+        return view('aluno.aluno-id', compact('aluno'));
     }
 
     /**
@@ -99,7 +99,7 @@ class AlunoController extends Controller
         
         $alu = Aluno::find($id);
         if(isset($alu)) {
-            return view('editaraluno', compact('alu'));
+            return view('aluno.editaraluno', compact('alu'));
         }
         return redirect('/aluno-id');
     }

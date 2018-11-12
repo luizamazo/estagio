@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('CADASTRO DE ALUNO') }}</div>
+                <div class="card-header">{{ __('Cadastro de Aluno') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/cadastro-aluno">
@@ -57,7 +57,7 @@
                            
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
-                        <button type="cancel" class="btn btn-danger btn-sm">Cancelar</button>
+                        <a href="{{ route('home') }}" class="btn btn-danger btn-sm">Cancelar</a>
                     </form>
                 </div>
             </div>
