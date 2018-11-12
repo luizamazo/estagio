@@ -65,7 +65,7 @@ class SupervisorController extends Controller
         
         $super->save();
 
-        return "cadastro super ok";
+        return redirect('/supervisores');
     }
 
     /**

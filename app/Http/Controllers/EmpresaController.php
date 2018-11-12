@@ -54,7 +54,7 @@ class EmpresaController extends Controller
         $empr->representante = $request->input('representante');
         $empr->save();
 
-        return "cadastro empr ok";
+        return redirect('/empresas');
     }
 
     /**

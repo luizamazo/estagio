@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Aluno;
 use App\User;
+use App\Log;
 
 class AlunoController extends Controller
 {
@@ -47,7 +48,7 @@ class AlunoController extends Controller
     public function store(Request $request)
     {
         $alu = new Aluno();
-        $alu->nome = $request->input('nome');
+        $target = $alu->nome = $request->input('nome');
         $alu->nascimento = $request->input('nascimento');
         $alu->rga = $request->input('rga');
         $alu->cpf = $request->input('cpf');
@@ -69,7 +70,10 @@ class AlunoController extends Controller
         
         $alu->save();
 
-        return "cadastro ok";
+        $log = new Log();
+        $log->log('cadastrou', 'aluno', $target);
+
+        return redirect('/alunos');
     }
 
     /**

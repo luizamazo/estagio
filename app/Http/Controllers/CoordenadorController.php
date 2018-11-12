@@ -67,7 +67,7 @@ class CoordenadorController extends Controller
         
         $cord->save();
 
-        return "cadastro coord ok";
+        return redirect('/coordenadores');
     }
 
     /**

@@ -25,7 +25,8 @@ class CursoController extends Controller
     
     public function index()
     {
-        $curso = Curso::all();
+       //$curso = Curso::all();
+       $curso = Curso::with('instituicao')->get();
         return view('curso.cursos', compact('curso'));
     }
 
@@ -54,7 +55,7 @@ class CursoController extends Controller
         $curso->campus = $request->input('campus');
         $curso->save();
 
-        return "cadastro curso ok";
+        return redirect('/cursos');
     }
 
     /**

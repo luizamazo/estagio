@@ -58,7 +58,7 @@ class InstituicaoController extends Controller
       
         $inst->save();
 
-        return "cadastro inst ok";
+        return redirect('/instituicoes');
     }
 
     /**
