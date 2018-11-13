@@ -23,15 +23,15 @@
                                <h4>CURSO: {{$cor->curso}}</h4>
                                <h4>CARGO: {{$cor->cargo}}</h4>
                                <h4>SIAPE: {{$cor->siape}}</h4>
-                               <a href="/coordenador/editar/{{$cor->id}}" class="btn btn-sm btn-warning">Editar</a>
-                               <a href="/coordenador/apagar/{{$cor->id}}" class="btn btn-sm btn-danger">Apagar</a>    
+                               <a href="/editar/coordenador/{{$cor->id}}" class="btn btn-sm btn-warning">Editar</a>
+                               <a href="/deletar/coordenador/{{$cor->id}}" class="btn btn-sm btn-danger">Apagar</a>    
                 @endforeach          
                                 <hr>
                                 <h3>Informações de Estágio</h3>
 
 
-                                <a href="/coordenador-estagio/editar/{{$cord->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                <a href="/coordenador-estagio/apagar/{{$cord->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                <a href="/coordenador-vaga/editar/{{$cord->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                <a href="/coordenador-vaga/apagar/{{$cord->id}}" class="btn btn-sm btn-danger">Apagar</a>
                    
                     
                 </div>

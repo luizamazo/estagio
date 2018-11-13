@@ -21,15 +21,15 @@
                                <h4>EMPRESA: {{$sup->empresa}}</h4>
                                <h4>CARGO: {{$sup->cargo}}</h4>
                                <h4>ÁREA: {{$sup->area}}</h4>
-                               <a href="/coordenador/editar/{{$sup->id}}" class="btn btn-sm btn-warning">Editar</a>
-                               <a href="/coordenador/apagar/{{$sup->id}}" class="btn btn-sm btn-danger">Apagar</a>    
+                               <a href="/editar/coordenador/{{$sup->id}}" class="btn btn-sm btn-warning">Editar</a>
+                               <a href="/deletar/coordenador/{{$sup->id}}" class="btn btn-sm btn-danger">Apagar</a>    
                 @endforeach          
                                 <hr>
                                 <h3>Informações de Estágio</h3>
 
 
-                                <a href="/coordenador-estagio/editar/{{$super->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                <a href="/coordenador-estagio/apagar/{{$super->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                <a href="/coordenador-vaga/editar/{{$super->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                <a href="/coordenador-vaga/apagar/{{$super->id}}" class="btn btn-sm btn-danger">Apagar</a>
                    
                     
                 </div>

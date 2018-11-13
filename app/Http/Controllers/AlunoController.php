@@ -120,7 +120,7 @@ class AlunoController extends Controller
     {
         $alu = Aluno::find($id);
         if(isset($alu)) {
-            $alu->nome = $request->input('nome');
+            $target = $alu->nome = $request->input('nome');
             $alu->nascimento = $request->input('nascimento');
             $alu->rga = $request->input('rga');
             $alu->cpf = $request->input('cpf');
@@ -134,6 +134,9 @@ class AlunoController extends Controller
             $alu->curso = $request->input('curso');
             $alu->semestre = $request->input('semestre');
             $alu->save();
+
+            $log = new Log();
+            $log->log('editou', 'aluno', $target);
         }
         return redirect('/alunos/show/{id}');
     }
@@ -149,6 +152,9 @@ class AlunoController extends Controller
         $alu = Aluno::find($id);
         if (isset($alu)) {
             $alu->delete();
+            $log = new Log();
+            $target = $alu->nome;
+            $log->log('deletou', 'aluno', $target);
         }
         return redirect('/alunos');
     }

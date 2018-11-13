@@ -10,4 +10,8 @@ class Coordenador extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function vaga(){
+        return $this->hasMany('App\Vaga');
+    }
 }

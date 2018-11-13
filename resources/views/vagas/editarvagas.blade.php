@@ -5,13 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Novo Estágio') }}</div>
-                <form method="POST" action="/cadastro-empresa">
+                <div class="card-header">{{ __('Editar Empresa') }}</div>
+                <form method="POST" action="/empresa/{{$empr->id}}">
                      @csrf
+                     {{ method_field('PUT') }}
                  <div class="card-body">
                     <div class="form-group">
-                                <label for="titulo">Título</label>
-                                <input type="text" class="form-control" name="titulo" placeholder="Título">
+                                <label for="razao">Razão Social</label>
+                                <input type="text" class="form-control" name="razaoSocial" placeholder="Razão Social">
 
                                 <label for="rg">Ramo</label>
                                 <input type="text" class="form-control" name="ramo" placeholder="Ramo">
@@ -29,7 +30,7 @@
                                 <input type="text" class="form-control" name="representante" placeholder="Representante">
                             
                             </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                             <a href="{{ route('home') }}" class="btn btn-danger btn-sm">Cancelar</a>  
                         </form>
                 </div>

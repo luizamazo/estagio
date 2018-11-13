@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Cadastro de Supervisor') }}</div>
-                <form method="POST" action="/cadastro-supervisor">
+                <form method="POST" action="/cadastrar/supervisor">
                      @csrf
                  <div class="card-body">
                     <div class="form-group">

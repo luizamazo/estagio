@@ -26,15 +26,14 @@
                                <h4>CAMPUS: {{$al->campus}}</h4>
                                <h4>CURSO: {{$al->curso}}</h4>
                                <h4>SEMESTRE: {{$al->semestre}}</h4>
-                               <a href="/alunos/editar/{{$al->id}}" class="btn btn-sm btn-warning">Editar</a>
-                               <a href="/alunos/apagar/{{$al->id}}" class="btn btn-sm btn-danger">Apagar</a>    
+                               <a href="/editar/aluno/{{$al->id}}" class="btn btn-sm btn-warning">Editar</a>
+                               <a href="/deletar/aluno/{{$al->id}}" class="btn btn-sm btn-danger">Apagar</a>    
                 @endforeach          
                                 <hr>
                                 <h3>Informações de Estágio</h3>
 
 
-                                <a href="/alunos-estagio/editar/{{$al->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                <a href="/alunos-estagio/apagar/{{$al->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                               
                    
                     
                 </div>

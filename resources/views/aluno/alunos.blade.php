@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Alunos') }}</div>
 
@@ -31,9 +31,15 @@
                                 <td>{{$al->curso}}</td>
                                 <td>{{$al->semestre}}</td>
                                 <td>
-                                    <a href="/alunos/show/{{$al->id}}" class="btn btn-sm btn-primary">Ver</a>
-                                    <a href="/alunos/editar/{{$al->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="/alunos/apagar/{{$al->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                   
+                                    <form action="/deletar/aluno/{{$al->id}}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <a href="/mostrar/aluno/{{$al->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/editar/aluno/{{$al->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                         <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
+                                    </form>
+                                    
                                 </td>
                               
                             </tr>

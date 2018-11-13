@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Cadastro de Aluno') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/cadastro-aluno">
+                    <form method="POST" action="/cadastrar/aluno">
                         @csrf
 
                         <div class="form-group">

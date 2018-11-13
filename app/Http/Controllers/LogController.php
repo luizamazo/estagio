@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Log;
 
-class AlunoController extends Controller
+class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +23,8 @@ class AlunoController extends Controller
     
     public function index()
     {
-        $log = Log::all();
-        return view('log.logs', compact('log'));
+        $logs = Log::all();
+        return view('log.logs', compact('logs'));
     }
 
     /**

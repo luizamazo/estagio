@@ -29,9 +29,16 @@
                                 <td>{{$sup->cargo}}</td>
                                 <td>{{$sup->contato}}</td>
                                 <td>
-                                    <a href="/coordenador/show/{{$sup->id}}" class="btn btn-sm btn-primary">Ver</a>
-                                    <a href="/coordenador/editar/{{$sup->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="/coordenador/apagar/{{$sup->id}}" class="btn btn-sm btn-danger">Apagar</a>
+
+                                   <form action="/deletar/coordenador/{{$sup->id}}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <a href="/coordenador/{{$sup->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/editar/coordenador/{{$sup->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                      
+                                         <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
+                                    </form>
+                                   
                                 </td>
                               
                             </tr>

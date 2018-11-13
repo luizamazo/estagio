@@ -33,8 +33,15 @@
                                 <td>{{$emp->endereco}}</td>
                                 <td>{{$emp->contato}}</td>
                                 <td>
-                                    <a href="/empresa/editar/{{$emp->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="/empresa/apagar/{{$emp->id}}" class="btn btn-sm btn-danger">Apagar</a>
+
+                                 <form action="/deletar/empresa/{{$emp->id}}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                       
+                                        <a href="/editar/empresa/{{$emp->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                         <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
+                                    </form>
+                                 
                                 </td>
                               
                             </tr>

@@ -8,9 +8,9 @@
                 <div class="card-header">{{ __('EDITAR COORDENADOR') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/coordenador/editar/{{$cord->id}}">
+                    <form method="POST" action="/coordenador/{{$cord->id}}">
                         @csrf
-
+                        {{ method_field('PUT') }}
                         <div class="form-group">
                         <label for="nome">Nome Completo</label>
                                 <input type="text" class="form-control" name="nome" placeholder="Nome">

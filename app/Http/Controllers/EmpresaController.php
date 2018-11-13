@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empresa;
+use App\Log;
 
 class EmpresaController extends Controller
 {
@@ -46,13 +47,16 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         $empr = new Empresa();
-        $empr->razao_social = $request->input('razaoSocial');
+        $target = $empr->razao_social = $request->input('razaoSocial');
         $empr->ramo = $request->input('ramo');
         $empr->cnpj = $request->input('cnpj');
         $empr->endereco = $request->input('endereco');
         $empr->contato = $request->input('contato');
         $empr->representante = $request->input('representante');
         $empr->save();
+
+        $log = new Log();
+        $log->log('criou', 'empresa', $target);
 
         return redirect('/empresas');
     }
@@ -99,13 +103,16 @@ class EmpresaController extends Controller
     {
         $empr = Empresa::find($id);
         if(isset($empr)) {
-            $empr->razao_social = $request->input('razaoSocial');
+            $target = $empr->razao_social = $request->input('razaoSocial');
             $empr->ramo = $request->input('ramo');
             $empr->cnpj = $request->input('cnpj');
             $empr->endereco = $request->input('endereco');
             $empr->contato = $request->input('contato');
             $empr->representante = $request->input('representante');
             $empr->save();
+
+            $log = new Log();
+            $log->log('editou', 'empresa', $target);
         }
         return redirect('/empresas');
     }
@@ -121,6 +128,9 @@ class EmpresaController extends Controller
         $empr = Empresa::find($id);
         if (isset($empr)) {
             $empr->delete();
+            $log = new Log();
+            $target = $empr->nome;
+            $log->log('deletou', 'empresa', $target);
         }
         return redirect('/empresas');
     }

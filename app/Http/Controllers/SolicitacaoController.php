@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Aluno;
-use App\User;
-use App\Supervisor;
-use App\Log;
 
-class SupervisorController extends Controller
+use App\Solicitacao;
+use App\Vaga;
+use App\Aluno;
+
+
+class SolicitacaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +27,8 @@ class SupervisorController extends Controller
     
     public function index()
     {
-        $super = Supervisor::all();
-        return view('supervisor.supervisores', compact('super'));
+        $solicitacao = Solicitacao::all();
+        return view('vagas.vagas', compact('esta'), 'aluno');
     }
 
     /**
@@ -35,9 +36,10 @@ class SupervisorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($v, $a)
     {
-        return view('supervisor.novosupervisor');
+        $vaga = Vaga::where('$v', $v);
+        return view('solicitacao.novasolicitacao', 'vaga');
     }
 
     /**
@@ -48,26 +50,18 @@ class SupervisorController extends Controller
      */
     public function store(Request $request)
     {
-        $super = new Supervisor();
-        $target = $super->nome = $request->input('nome');
-        $super->nascimento = $request->input('nascimento');
-        $super->cpf = $request->input('cpf');
-        $super->rg = $request->input('rg');
-        $super->contato = $request->input('contato');
-        $super->empresa = $request->input('empresa');
-        $super->cargo = $request->input('cargo');
-        $super->area = $request->input('area');
-        $super->email = $request->input('email');
-        $email =  $request->input('email');
+        $vaga = new Vaga();
+        $target = $vaga->titulo = $request->input('titulo');
+        $vaga->area = $request->input('area');
+        $vaga->empresa_id = $request->input('empresa');
+        $vaga->super_id = $request->input('supervisor');
+        $vaga->requisitos = $request->input('requisitos');
         
-        $id =  User::where('email', $email)->first()->id;
-
-        $super->user_id = $id;
         
-        $super->save();
+        $vaga->save();
 
         $log = new Log();
-        $log->log('criou', 'supervisor', $target);
+        $log->log('criou', 'vaga', $target);
 
         return redirect('/supervisores');
     }
@@ -81,9 +75,9 @@ class SupervisorController extends Controller
     public function show($id)
     {  
        
-        $super = Supervisor::where('id', $id)->get();
+        $vaga = Vaga::where('id', $id)->get();
      
-        return view('supervisor.supervisor-id', compact('super'));
+        return view('vagas.vaga-id', compact('esta'));
     }
 
     /**
@@ -95,11 +89,11 @@ class SupervisorController extends Controller
     public function edit($id)
     {
         
-        $super = Supervisor::find($id);
-        if(isset($super)) {
-            return view('supervisor.editarsupervisor', compact('super'));
+        $vaga = Vaga::find($id);
+        if(isset($vaga)) {
+            return view('vagas.editarvaga', compact('esta'));
         }
-        return redirect('/supervisor-id');
+        return redirect('/vaga-id');
     }
 
 
@@ -112,8 +106,8 @@ class SupervisorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $super = Supervisor::find($id);
-        if(isset($super)) {
+        $vaga = Vaga::find($id);
+        if(isset($vaga)) {
             $target = $super->nome = $request->input('nome');
             $super->nascimento = $request->input('nascimento');
             $super->cpf = $request->input('cpf');
@@ -125,7 +119,7 @@ class SupervisorController extends Controller
             $super->save();
 
             $log = new Log();
-            $log->log('editou', 'supervisor', $target);
+            $log->log('editou', 'vaga', $target);
         }
         return redirect('/supervisor/show/{id}');
     }
@@ -138,12 +132,12 @@ class SupervisorController extends Controller
      */
     public function destroy($id)
     {
-        $super = Supervisor::find($id);
-        if (isset($super)) {
-            $super->delete();
+        $vaga = Vaga::find($id);
+        if (isset($vaga)) {
+            $vaga->delete();
             $log = new Log();
-            $target = $super->nome;
-            $log->log('deletou', 'supervisor', $target);
+            $target = $vaga->nome;
+            $log->log('deletou', 'vaga', $target);
         }
         return redirect('/supervisores');
     }

@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('EDITAR ALUNO') }}</div>
+                <div class="card-header">{{ __('Editar Aluno') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/alunos/editar/{{$alu->id}}">
+                    <form method="POST" action="/editar/aluno/{{$alu->id}}">
                         @csrf
-
+                        {{ method_field('PUT') }}
                         <div class="form-group">
                             <label for="nome">Nome Completo</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome">

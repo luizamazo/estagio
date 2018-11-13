@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Curso;
 use App\Instituicao;
-
+use App\Log;
 
 class CursoController extends Controller
 {
@@ -50,10 +50,13 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $curso = new Curso();
-        $curso->nome = $request->input('nome');
+        $target = $curso->nome = $request->input('nome');
         $curso->inst_id = $request->input('instituicao');
         $curso->campus = $request->input('campus');
         $curso->save();
+
+        $log = new Log();
+        $log->log('criou', 'curso', $target);
 
         return redirect('/cursos');
     }
@@ -100,7 +103,7 @@ class CursoController extends Controller
     {
         $curso = Curso::find($id);
         if(isset($curso)) {
-            $inst->nome = $request->input('nome');
+            $target = $inst->nome = $request->input('nome');
             $inst->contato = $request->input('contato');
             $inst->email = $request->input('email');
             $inst->site = $request->input('site');
@@ -109,6 +112,9 @@ class CursoController extends Controller
             $inst->endereco = $request->input('endereco');
             $inst->campus = $request->input('campus');
             $inst->save();
+
+            $log = new Log();
+            $log->log('editou', 'curso', $target);
         }
         return redirect('/curso/show/{id}');
     }
@@ -124,6 +130,9 @@ class CursoController extends Controller
         $curso = Curso::find($id);
         if (isset($curso)) {
             $curso->delete();
+            $log = new Log();
+            $target = $curso->nome;
+            $log->log('deletou', 'curso', $target);
         }
         return redirect('/cursos');
     }

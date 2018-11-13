@@ -32,9 +32,16 @@
                                 <td>{{$ins->contato}}</td>
                                 
                                 <td>
-                                    <a href="/instituicao/show/{{$ins->id}}" class="btn btn-sm btn-primary">Ver</a>
-                                    <a href="/instituicao/editar/{{$ins->id}}" class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="/instituicao/apagar/{{$ins->id}}" class="btn btn-sm btn-danger">Apagar</a>
+
+                                  <form action="/deletar/instituicao/{{$ins->id}}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <a href="/mostrar/instituicao/{{$ins->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/editar/instituicao/{{$ins->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                      
+                                         <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
+                                    </form>
+                                 
                                 </td>
                               
                             </tr>

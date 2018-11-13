@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Cadastro de Cursos') }}</div>
-                <form method="POST" action="/cadastro-curso">
+                <form method="POST" action="/cadastrar/curso">
                      @csrf
                  <div class="card-body">
                     <div class="form-group">
@@ -15,6 +15,7 @@
 
                                 <label for="instituicao">Instituição</label>
                                 <select class="custom-select" name="instituicao">
+                                    <option value="" disabled selected>Selecione uma instituição</option>
                                     @foreach($inst as $ins)
                                         <option value="{{$ins->id}}">{{$ins->nome}}</option>
                                     @endforeach

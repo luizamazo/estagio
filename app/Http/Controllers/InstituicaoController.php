@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Instituicao;
 use App\Curso;
+use App\Log;
 
 class InstituicaoController extends Controller
 {
@@ -47,7 +48,7 @@ class InstituicaoController extends Controller
     public function store(Request $request)
     {
         $inst = new Instituicao();
-        $inst->nome = $request->input('nome');
+        $target = $inst->nome = $request->input('nome');
         $inst->contato = $request->input('contato');
         $inst->email = $request->input('email');
         $inst->site = $request->input('site');
@@ -57,6 +58,9 @@ class InstituicaoController extends Controller
         $inst->campus = $request->input('campus');
       
         $inst->save();
+
+        $log = new Log();
+        $log->log('criou', 'instituição', $target);
 
         return redirect('/instituicoes');
     }
@@ -103,7 +107,7 @@ class InstituicaoController extends Controller
     {
         $inst = Instituicao::find($id);
         if(isset($inst)) {
-            $inst->nome = $request->input('nome');
+            $target = $inst->nome = $request->input('nome');
             $inst->contato = $request->input('contato');
             $inst->email = $request->input('email');
             $inst->site = $request->input('site');
@@ -112,6 +116,9 @@ class InstituicaoController extends Controller
             $inst->endereco = $request->input('endereco');
             $inst->campus = $request->input('campus');
             $inst->save();
+
+            $log = new Log();
+            $log->log('editou', 'instituição', $target);
         }
         return redirect('/instituicao/show/{id}');
     }
@@ -127,6 +134,9 @@ class InstituicaoController extends Controller
         $inst = Instituicao::find($id);
         if (isset($inst)) {
             $inst->delete();
+            $log = new Log();
+            $target = $inst->nome;
+            $log->log('deletou', 'instituição', $target);
         }
         return redirect('/instituicoes');
     }

@@ -10,4 +10,8 @@ class Supervisor extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function vaga(){
+        return $this->hasOne('App\Vaga');
+    }
 }

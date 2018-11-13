@@ -20,8 +20,8 @@
                                <h5>CAMPUS: {{$ins->campus}}</h5>
                                <h5>ENDERECO: {{$ins->endereco}}</h5>
                               
-                               <a href="/instituicao/editar/{{$ins->id}}" class="btn btn-sm btn-warning">Editar</a>
-                               <a href="/instituicao/apagar/{{$ins->id}}" class="btn btn-sm btn-danger">Apagar</a>    
+                               <a href="/editar/instituicao/{{$ins->id}}" class="btn btn-sm btn-warning">Editar</a>
+                               <a href="/deletar/instituicao/{{$ins->id}}" class="btn btn-sm btn-danger">Apagar</a>    
                 @endforeach          
 
                                 <!-- põe um scroll aqui-->
@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>{{$cur->nome}}</td>
                                             <td>
-                                                <a href="/curso/apagar/{{$cur->id}}" class="btn btn-sm btn-danger">Apagar</a>
+                                                <a href="/deletar/curso/{{$cur->id}}" class="btn btn-sm btn-danger">Apagar</a>
                                             </td>
                                         
                                         </tr>

@@ -6,8 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Editar Empresa') }}</div>
-                <form method="POST" action="/empresa/editar/{{$empr->id}}">
+                <form method="POST" action="/empresa/{{$empr->id}}">
                      @csrf
+                     {{ method_field('PUT') }}
                  <div class="card-body">
                     <div class="form-group">
                                 <label for="razao">Razão Social</label>

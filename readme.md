@@ -1,6 +1,6 @@
 Trabalho de programação web
 
-0 -  Clona o repositório (git clone https://github.com/luizamazo/estagio.git)
+0 -  Clona o repositório (git clone https://github.com/luizamazo/vaga.git)
 
 1 - Cria um arquivo .env na pasta principal, copia o conteúdo de .env.example e cola nele. Em DB_DATABASE coloca o nome do banco de dados que você criou, DB_USERNAME = root, DB_PASSWORD no windows é = '' a não ser que tenha sido especificado a senha
 

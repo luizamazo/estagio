@@ -27,7 +27,14 @@
                                 <td>{{$cur->campus}}</td>
                                 
                                 <td>
-                                    <a href="/curso/apagar/{{$cur->id}}" class="btn btn-sm btn-danger">Apagar</a>
+
+                                <form action="/deletar/curso/{{$cur->id}}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        
+                                         <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
+                                    </form>
+                               
                                 </td>
                               
                             </tr>

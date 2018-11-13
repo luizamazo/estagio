@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Aluno;
 use App\User;
 use App\Coordenador;
+use App\Log;
 
 class CoordenadorController extends Controller
 {
@@ -48,7 +49,7 @@ class CoordenadorController extends Controller
     public function store(Request $request)
     {
         $cord = new Coordenador();
-        $cord->nome = $request->input('nome');
+        $target = $cord->nome = $request->input('nome');
         $cord->nascimento = $request->input('nascimento');
         $cord->cpf = $request->input('cpf');
         $cord->rg = $request->input('rg');
@@ -66,6 +67,9 @@ class CoordenadorController extends Controller
         $cord->user_id = $id;
         
         $cord->save();
+
+        $log = new Log();
+        $log->log('cadastrou', 'coordenador', $target);
 
         return redirect('/coordenadores');
     }
@@ -112,7 +116,7 @@ class CoordenadorController extends Controller
     {
         $cord = Coordenador::find($id);
         if(isset($cord)) {
-            $cord->nome = $request->input('nome');
+            $target = $cord->nome = $request->input('nome');
             $cord->nascimento = $request->input('nascimento');
             $cord->cpf = $request->input('cpf');
             $cord->rg = $request->input('rg');
@@ -123,6 +127,9 @@ class CoordenadorController extends Controller
             $cord->cargo = $request->input('cargo');
             $cord->siape = $request->input('siape');
             $cord->save();
+
+            $log = new Log();
+            $log->log('editou', 'coordenador', $target);
         }
         return redirect('/coordenador/show/{id}');
     }
@@ -138,6 +145,9 @@ class CoordenadorController extends Controller
         $cord = Coordenador::find($id);
         if (isset($cord)) {
             $cord->delete();
+            $log = new Log();
+            $target = $cord->nome;
+            $log->log('deletou', 'coordenador', $target);
         }
         return redirect('/coordenadores');
     }
