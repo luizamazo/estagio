@@ -6,16 +6,10 @@ use Illuminate\Http\Request;
 use App\Aluno;
 use App\User;
 use App\Log;
+use App\Contato;
 
 class AlunoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     * 
-     * 
-     */
 
     public function __construct()
     {
@@ -28,23 +22,12 @@ class AlunoController extends Controller
         $alu = Aluno::all();
         return view('aluno.alunos', compact('alu'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         return view('aluno.novoaluno');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $alu = new Aluno();
@@ -61,9 +44,8 @@ class AlunoController extends Controller
         $alu->campus = $request->input('campus');
         $alu->curso = $request->input('curso');
         $alu->semestre = $request->input('semestre');
-        $alu->email = $request->input('email');
-        $email =  $request->input('email');
-        
+        $email = $alu->email = $request->input('email');
+
         $id =  User::where('email', $email)->first()->id;
 
         $alu->user_id = $id;
@@ -76,12 +58,6 @@ class AlunoController extends Controller
         return redirect('/alunos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {  
         //esta MERDA nao ta funcionando
@@ -92,12 +68,6 @@ class AlunoController extends Controller
         return view('aluno.aluno-id', compact('aluno'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         
@@ -108,14 +78,6 @@ class AlunoController extends Controller
         return redirect('/aluno-id');
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $alu = Aluno::find($id);
@@ -141,12 +103,6 @@ class AlunoController extends Controller
         return redirect('/alunos/show/{id}');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $alu = Aluno::find($id);

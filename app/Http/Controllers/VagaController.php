@@ -9,6 +9,8 @@ use App\Vaga;
 use App\Supervisor;
 use App\Empresa;
 use App\Log;
+use App\Coordenador;
+use Auth;
 
 class VagaController extends Controller
 {
@@ -30,7 +32,7 @@ class VagaController extends Controller
     {
         $vaga = Vaga::all();
         $aluno = Aluno::where('id', Auth::id());
-        return view('vagas.vagas', compact('esta'), 'aluno');
+        return view('vagas.vagas', compact('vaga', 'aluno'));
     }
 
     /**
@@ -42,7 +44,7 @@ class VagaController extends Controller
     {
         $super = Supervisor::all();
         $empr = Empresa::all();
-        return view('vagas.novovaga', compact('super', 'empr'));
+        return view('vagas.novavaga', compact('super', 'empr'));
     }
 
     /**
@@ -59,6 +61,11 @@ class VagaController extends Controller
         $vaga->empresa_id = $request->input('empresa');
         $vaga->super_id = $request->input('supervisor');
         $vaga->requisitos = $request->input('requisitos');
+
+        //pega id da sessao = id do coord pra salvar no coor_id, gambiarra do caralho
+
+        $t = Coordenador::where('user_id', Auth::id())->first()->id;
+        $vaga->coor_id = $t;
         
         
         $vaga->save();

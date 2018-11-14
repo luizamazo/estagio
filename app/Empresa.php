@@ -9,4 +9,9 @@ class Empresa extends Model
     public function vaga(){
         return $this->hasMany('App\Vaga');
     }
+
+    public function contato()
+    {
+        return $this->hasOne('App\Contato');
+    }
 }

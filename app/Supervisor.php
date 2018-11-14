@@ -14,4 +14,9 @@ class Supervisor extends Model
     public function vaga(){
         return $this->hasOne('App\Vaga');
     }
+
+    public function contato()
+    {
+        return $this->hasOne('App\Contato');
+    }
 }

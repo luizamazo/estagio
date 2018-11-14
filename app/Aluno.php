@@ -19,4 +19,9 @@ class Aluno extends Model
     {
         return $this->hasMany('App\Solicitacao');
     }
+
+    public function contato()
+    {
+        return $this->hasOne('App\Contato');
+    }
 }
