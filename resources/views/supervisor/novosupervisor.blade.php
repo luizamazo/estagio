@@ -10,7 +10,7 @@
                      @csrf
                  <div class="card-body">
                  <div class="form-group">
-                           
+                 *Para cadastrar, um usuário já precisa ter sido previamente criado.
                             <label for="nome">Nome Completo</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome">
 

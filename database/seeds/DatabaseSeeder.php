@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CoordenadorTableSeeder::class);
         $this->call(SupervisorTableSeeder::class);
         $this->call(AlunoTableSeeder::class);
+        $this->call(VagaTableSeeder::class);
         
         
     }

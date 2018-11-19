@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vaga extends Model
 {
+    protected $fillable = [
+        'titulo', 'area', 'empresa_id', 'super_id', 'coor_id', 'requisitos'
+    ];
+
     public function empresa(){
         return $this->belongsTo(Empresa::class, 'empresa_id');
     }
@@ -19,6 +23,6 @@ class Vaga extends Model
     }
 
     public function solicitacao(){
-        return $this->hasMany('App\Solicitacao');
+        return $this->hasMany(Solicitacao::class);
     }
 }

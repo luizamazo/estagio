@@ -14,14 +14,13 @@
                         </div>
                     @endif
 
-                    <h3>Você está logado como USUÁRIO</h3>
-                    <br>
                      <div class="links">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastrar Usuário') }}</a></li>
-                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
-                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
-                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
-                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
+                        <a class='btn btn-lg btn-danger' href="/aluno">Lista de alunos</a>
+                        <a class='btn btn-lg btn-danger' href="/supervisor">Lista de supervisores</a>
+                        <a class='btn btn-lg btn-danger' href="/coordenador">Lista de coordenadores</a>
+                        <a class='btn btn-lg btn-danger' href="/instituicao">Lista de instituições</a>
+                        <a class='btn btn-lg btn-danger' href="/empresa">Lista de empresas</a>
+                        <a class='btn btn-lg btn-danger' href="/vaga">Lista de vagas de estágio</a>
                     </div>
                 </div>
             </div>

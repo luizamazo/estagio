@@ -2,84 +2,94 @@
 
 namespace App\Http\Controllers;
 
-use App\Vaga;
 use Illuminate\Http\Request;
 
-class VagasController extends Controller
+use App\Aluno;
+use App\Vaga;
+use App\Supervisor;
+use App\Empresa;
+use App\Log;
+use App\Coordenador;
+use Auth;
+
+class VagaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+      
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        //
+        $vaga = Vaga::all();
+        $aluno = Aluno::where('id', Auth::id());
+        return view('vagas.vagas', compact('vaga', 'aluno'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
-        //
+        $coor = Coordenador::all();
+        $super = Supervisor::all();
+        $empr = Empresa::all();
+        return view('vagas.novavaga', compact('super', 'empr', 'coor'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+
+        $vaga = new Vaga();
+        $target = $vaga->titulo = $request->input('titulo');
+        $vaga->area = $request->input('area');
+        $vaga->requisitos = $request->input('requisitos');
+        $vaga->coor_id = $request->input('coordenador');
+        $vaga->empresa_id = $request->input('empresa');
+        $vaga->super_id = $request->input('supervisor');
+        $vaga->save();
+
+        $log = new Log();
+        $log->log('criou', 'vaga', $target);
+
+        return redirect('/vaga');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Vagas  $vagas
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vagas $vagas)
-    {
-        //
+ 
+    public function show($id)
+    {  
+       
+        $vaga = Vaga::where('id', $id)->get();
+     
+        return view('vagas.vaga-id', compact('vaga'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Vagas  $vagas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vagas $vagas)
+   
+    public function edit($id)
     {
-        //
+        
+        $vaga = Vaga::find($id);
+        if(isset($vaga)) {
+            return view('vagas.editarvaga', compact('vaga'));
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vagas  $vagas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vagas $vagas)
+    public function update(Request $request, $id)
     {
-        //
+      
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Vagas  $vagas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Vagas $vagas)
+  
+    public function destroy($id)
     {
-        //
+        $vaga = Vaga::find($id);
+        if (isset($vaga)) {
+            $vaga->delete();
+            $log = new Log();
+            $target = $vaga->nome;
+            $log->log('deletou', 'vaga', $target);
+        }
+        return redirect('/home');
     }
 }

@@ -10,8 +10,9 @@
                 <div class="card-body">
                     <form method="POST" action="/aluno">
                         @csrf
+                        *Para cadastrar, um usuário já precisa ter sido previamente criado.
                         <div class="form-group">
-                           *Para cadastrar, um usuário já precisa ter sido previamente criado.
+                           
                             <label for="nome">Nome Completo</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome">
 

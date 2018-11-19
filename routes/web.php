@@ -25,6 +25,11 @@ Route::prefix('/admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
+//Route::prefix('reg')->group(function(){
+  //  Route::get('/register', '\Auth\RegisterController@showRegistrationForm');
+   // Route::post('/register', '\Auth\RegisterController@register');
+//});  
+
 Route::resource('logs', 'LogController');
 Route::resource('aluno', 'AlunoController');
 Route::resource('coordenador', 'CoordenadorController');
@@ -32,6 +37,7 @@ Route::resource('supervisor', 'SupervisorController');
 Route::resource('instituicao', 'InstituicaoController');
 Route::resource('curso', 'CursoController')->except(['show', 'update', 'edit']);
 Route::resource('empresa', 'EmpresaController');
+Route::resource('vaga', 'VagaController');
 
 Route::get('/inter', 'InterController@create');
 Route::post('/inter', 'InterController@link');
