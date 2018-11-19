@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Cadastro de Empresa') }}</div>
-                <form method="POST" action="/cadastrar/empresa">
+                <form method="POST" action="/empresa">
                      @csrf
                  <div class="card-body">
                     <div class="form-group">
@@ -18,12 +18,31 @@
 
                                 <label for="cnpj">CNPJ</label>
                                 <input type="text" class="form-control" name="cnpj" placeholder="CNPJ">
+
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" >
                          
-                                <label for="contato">Contato</label>
-                                <input type="text" class="form-control" name="contato" placeholder="Contato">
+                                <label for="contato">Telefone</label>
+                                <input type="text" class="form-control" name="contato" placeholder="Telefone">
+
+                                <label for="site">Site</label>
+                                <input type="text" class="form-control" name="site">
 
                                 <label for="endereco">Endereço</label>
-                                <input type="text" class="form-control" name="endereco" placeholder="Endereco">
+                                    <div class="form-row">
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" name="rua" placeholder="Rua">
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                                        </div>    
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                                        </div>    
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="cep" placeholder="CEP">
+                                        </div>
+                                    </div>
 
                                 <label for="representante">Representante</label>
                                 <input type="text" class="form-control" name="representante" placeholder="Representante">

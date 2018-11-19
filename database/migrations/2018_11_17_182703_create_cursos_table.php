@@ -6,30 +6,22 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCursosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
-            
             $table->string('nome');
-            $table->string('campus');
+            //como campus tem chave estrangeira pra inst, preciso de foreign pra inst aqui? ---- preciso pra um where no controller
             $table->unsignedInteger('inst_id');
-
-            $table->foreign('inst_id')->references('id')->on('instituicaos');
+            $table->foreign('inst_id')->references('id')->on('instituicaos')->onDelete('cascade');
+            $table->unsignedInteger('campus_id');
+            $table->foreign('campus_id')->references('id')->on('campuses')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('cursos');

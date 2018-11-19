@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Instituições Cadastradas') }}</div>
 
@@ -17,7 +17,7 @@
                                 <th>CNPJ</th>
                                 <th>Tipo</th>
                                 <th>Email</th>
-                                <th>Contato</th>
+                                <th>Telefone</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -29,15 +29,15 @@
                                 <td>{{$ins->cnpj}}</td>
                                 <td>{{$ins->tipo}}</td>
                                 <td>{{$ins->email}}</td>
-                                <td>{{$ins->contato}}</td>
+                                <td>{{$ins->telefone}}</td>
                                 
                                 <td>
 
-                                  <form action="/deletar/instituicao/{{$ins->id}}" method="POST">
+                                  <form action="/instituicao/{{$ins->id}}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <a href="/mostrar/instituicao/{{$ins->id}}" class="btn btn-sm btn-primary">Ver</a>
-                                        <a href="/editar/instituicao/{{$ins->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="/instituicao/{{$ins->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/instituicao/{{$ins->id}}/edit" class="btn btn-sm btn-warning">Editar</a>
                                       
                                          <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
                                     </form>
@@ -48,7 +48,13 @@
                 @endforeach                
                         </tbody>
                     </table>
-                @endif        
+                @endif      
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="/instituicao/create" class="btn btn-success center-block">Adicionar Nova Instituição</a>  
+                            <a href="/inter/campus" class="btn btn-success center-block">Adicionar Novo Campus</a>  
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

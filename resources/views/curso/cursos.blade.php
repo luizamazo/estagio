@@ -24,11 +24,11 @@
 
                                 <td>{{$cur->nome}}</td>
                                 <td>{{$cur->instituicao->nome}}</td>
-                                <td>{{$cur->campus}}</td>
+                                <td>{{$cur->campus->nome}}</td>
                                 
                                 <td>
 
-                                <form action="/deletar/curso/{{$cur->id}}" method="POST">
+                                <form action="/curso/{{$cur->id}}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
                                         

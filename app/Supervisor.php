@@ -6,17 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supervisor extends Model
 {
-    public function user()
-    {
-        return $this->hasOne('App\User');
+    protected $fillable = [
+        'cargo', 'area', 'tel_id', 'pessoa_id', 'empresa_id'
+    ];
+
+    public function user(){
+        return $this->hasOne(User::class);
     }
 
-    public function vaga(){
-        return $this->hasOne('App\Vaga');
+    public function empresa(){
+        return $this->belongsTo(Empresa::class, 'empresa_id');
     }
 
-    public function contato()
-    {
-        return $this->hasOne('App\Contato');
+    public function pessoa(){
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
     }
+
+    public function telefone(){
+        return $this->belongsTo(Telefone::class, 'tel_id');
+    }
+
 }

@@ -4,23 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Aluno;
+use App\Empresa;
 use App\User;
 use App\Supervisor;
 use App\Log;
+use App\Pessoa;
+use App\Telefone;
 
 class SupervisorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     * 
-     * 
-     */
+ 
 
     public function __construct()
     {
-        //dps coloco só pro adm acessar
         $this->middleware('auth');
     }
     
@@ -30,54 +26,50 @@ class SupervisorController extends Controller
         return view('supervisor.supervisores', compact('super'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function create()
     {
-        return view('supervisor.novosupervisor');
+        $empresa = Empresa::all();
+        return view('supervisor.novosupervisor', compact('empresa'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
+        $pessoa = new Pessoa();
+        $target = $pessoa->nome = $request->input('nome');
+        $pessoa->nascimento = $request->input('nascimento');
+        $pessoa->rg = $request->input('rg');
+        $cpf = $pessoa->cpf = $request->input('cpf');
+        $email = $pessoa->email = $request->input('email');
+        $id = User::where('email', $email)->first()->id;
+        $pessoa->user_id = $id;
+        $pessoa->save();
+
+        Telefone::create([
+            "fixo"=>request('fixo'),
+            "celular"=>request('celular')
+        ]); 
+
+        $p_id = Pessoa::where('cpf', $cpf)->first()->id;
+        $celular = $request->input('celular');
+        $t_id = Telefone::where('celular', $celular)->first()->id;
+
         $super = new Supervisor();
-        $target = $super->nome = $request->input('nome');
-        $super->nascimento = $request->input('nascimento');
-        $super->cpf = $request->input('cpf');
-        $super->rg = $request->input('rg');
-        $super->contato = $request->input('contato');
-        $super->empresa = $request->input('empresa');
+        $super->pessoa_id = $p_id;
+        $super->tel_id = $t_id;
+        $super->empresa_id = $request->input('empresa');
         $super->cargo = $request->input('cargo');
         $super->area = $request->input('area');
-        $super->email = $request->input('email');
-        $email =  $request->input('email');
-        
-        $id =  User::where('email', $email)->first()->id;
-
-        $super->user_id = $id;
-        
         $super->save();
 
         $log = new Log();
         $log->log('criou', 'supervisor', $target);
 
-        return redirect('/supervisores');
+        return redirect('/supervisor');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show($id)
     {  
        
@@ -86,40 +78,31 @@ class SupervisorController extends Controller
         return view('supervisor.supervisor-id', compact('super'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         
         $super = Supervisor::find($id);
+        $empresa = Empresa::all();
         if(isset($super)) {
-            return view('supervisor.editarsupervisor', compact('super'));
+            return view('supervisor.editarsupervisor', compact('super', 'empresa'));
         }
-        return redirect('/supervisor-id');
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
+        $target = $request->input('nome');
         $super = Supervisor::find($id);
         if(isset($super)) {
-            $target = $super->nome = $request->input('nome');
-            $super->nascimento = $request->input('nascimento');
-            $super->cpf = $request->input('cpf');
-            $super->rg = $request->input('rg');
-            $super->contato = $request->input('contato');
-            $super->empresa = $request->input('empresa');
+            $super->pessoa()->where('id', $super->pessoa_id)->update(['nome'=> $request->input('nome')]);
+            $super->telefone()->where('id', $super->tel_id)->update([
+                'fixo' => $request->input('fixo'),
+                'celular' => $request->input('celular')
+                ]);
+        
+            $super->empresa_id = $request->input('empresa');
             $super->cargo = $request->input('cargo');
             $super->area = $request->input('area');
             $super->save();
@@ -127,24 +110,25 @@ class SupervisorController extends Controller
             $log = new Log();
             $log->log('editou', 'supervisor', $target);
         }
-        return redirect('/supervisor/show/{id}');
+        return redirect('/supervisor');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        $super = Supervisor::find($id);
-        if (isset($super)) {
-            $super->delete();
-            $log = new Log();
-            $target = $super->nome;
-            $log->log('deletou', 'supervisor', $target);
-        }
-        return redirect('/supervisores');
+        $tel_id = Supervisor::where('id', $id)->first()->tel_id;
+        $pessoa_id = Supervisor::where('id', $id)->first()->pessoa_id;
+        $target = Pessoa::where('id', $pessoa_id)->first()->nome;
+        
+        $pessoa = Pessoa::find($pessoa_id);
+        $pessoa->delete();
+
+        $tel = Telefone::find($tel_id);
+        $tel->delete();
+
+        $log = new Log();
+        $log->log('deletou', 'supervisor', $target);
+    
+        return redirect('/supervisor');
     }
 }

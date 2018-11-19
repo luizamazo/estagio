@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    public function vaga(){
-        return $this->hasMany('App\Vaga');
+    protected $fillable = [
+        'nome', 'ramo', 'cnpj', 'telefone', 'representante', 'end_id'
+    ];
+   
+    public function supervisor(){
+        return $this->hasMany(Supervisor::class);
     }
 
-    public function contato()
-    {
-        return $this->hasOne('App\Contato');
+    public function vaga(){
+        return $this->hasMany(Vaga::class);
+    }
+
+    public function endereco(){
+        return $this->belongsTo(Endereco::class, 'end_id');
     }
 }

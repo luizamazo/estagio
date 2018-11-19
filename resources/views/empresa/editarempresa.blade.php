@@ -19,12 +19,31 @@
 
                                 <label for="cnpj">CNPJ</label>
                                 <input type="text" class="form-control" name="cnpj" placeholder="CNPJ">
+
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" placeholder="Email">
                          
-                                <label for="contato">Contato</label>
+                                <label for="contato">Telefone</label>
                                 <input type="text" class="form-control" name="contato" placeholder="Contato">
 
+                                <label for="site">Site</label>
+                                <input type="text" class="form-control" name="site" placeholder="Site">
+
                                 <label for="endereco">Endereço</label>
-                                <input type="text" class="form-control" name="endereco" placeholder="Endereco">
+                                    <div class="form-row">
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" name="rua" placeholder="Rua">
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                                        </div>    
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                                        </div>    
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="cep" placeholder="CEP">
+                                        </div>
+                                    </div>
 
                                 <label for="representante">Representante</label>
                                 <input type="text" class="form-control" name="representante" placeholder="Representante">

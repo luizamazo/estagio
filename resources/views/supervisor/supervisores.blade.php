@@ -24,17 +24,17 @@
                 @foreach($super as $sup)
                             <tr>
                           
-                                <td>{{$sup->nome}}</td>
-                                <td>{{$sup->empresa}}</td>
+                                <td>{{$sup->pessoa->nome}}</td>
+                                <td>{{$sup->empresa->nome}}</td>
                                 <td>{{$sup->cargo}}</td>
-                                <td>{{$sup->contato}}</td>
+                                <td>{{$sup->telefone->celular}}</td>
                                 <td>
 
-                                   <form action="/deletar/coordenador/{{$sup->id}}" method="POST">
+                                   <form action="/supervisor/{{$sup->id}}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <a href="/coordenador/{{$sup->id}}" class="btn btn-sm btn-primary">Ver</a>
-                                        <a href="/editar/coordenador/{{$sup->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="/supervisor/{{$sup->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/supervisor/{{$sup->id}}/edit" class="btn btn-sm btn-warning">Editar</a>
                                       
                                          <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
                                     </form>
@@ -46,6 +46,12 @@
                         </tbody>
                     </table>
                 @endif        
+
+                <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="/supervisor/create" class="btn btn-success center-block">Adicionar Novo Supervisor</a>  
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

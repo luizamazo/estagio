@@ -6,22 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aluno extends Model
 {
-    public function user()
-    {
-        return $this->hasOne('App\User');
+
+    protected $fillable = [
+        'rga', 'semestre', 'tel_id', 'pessoa_id', 'inst_id',
+        'campus_id', 'curso_id', 'end_id'
+    ];
+
+      
+    public function pessoa(){
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
+    }
+    
+    public function telefone(){
+        return $this->belongsTo(Telefone::class, 'tel_id');
     }
 
-    public function getTableColumns() {
-        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    public function endereco(){
+        return $this->belongsTo(Endereco::class, 'end_id');
+    }
+  
+    public function instituicao(){
+        return $this->belongsTo(Instituicao::class, 'inst_id');
     }
 
-    public function solicitacao()
-    {
-        return $this->hasMany('App\Solicitacao');
+    public function campus(){
+        return $this->belongsTo(Campus::class, 'campus_id');
     }
 
-    public function contato()
-    {
-        return $this->hasOne('App\Contato');
+    public function curso(){
+        return $this->belongsTo(Curso::class, 'curso_id');
+    }
+    //////////////////////////////
+
+    public function createAluno(){
+
     }
 }

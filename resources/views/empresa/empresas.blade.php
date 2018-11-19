@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Empresas Cadastradas') }}</div>
 
@@ -17,8 +17,8 @@
                                 <th>Representante</th>
                                 <th>Ramo</th>
                                 <th>CNPJ</th>
-                                <th>Endereço</th>
-                                <th>Contato</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -26,19 +26,19 @@
                 @foreach($empr as $emp)
                             <tr>
 
-                                <td>{{$emp->razao_social}}</td>
+                                <td>{{$emp->nome}}</td>
                                 <td>{{$emp->representante}}</td>
                                 <td>{{$emp->ramo}}</td>
                                 <td>{{$emp->cnpj}}</td>
-                                <td>{{$emp->endereco}}</td>
-                                <td>{{$emp->contato}}</td>
+                                <td>{{$emp->email}}</td>
+                                <td>{{$emp->telefone}}</td>
                                 <td>
 
-                                 <form action="/deletar/empresa/{{$emp->id}}" method="POST">
+                                 <form action="/empresa/{{$emp->id}}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                       
-                                        <a href="/editar/empresa/{{$emp->id}}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="/empresa/{{$emp->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/empresa/{{$emp->id}}" class="btn btn-sm btn-warning">Editar</a>
                                          <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
                                     </form>
                                  
@@ -49,6 +49,12 @@
                         </tbody>
                     </table>
                 @endif        
+                <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="/empresa/create" class="btn btn-success center-block">Adicionar Nova Empresa</a>  
+                        </div>
+                         
+                    </div>
                 </div>
             </div>
         </div>

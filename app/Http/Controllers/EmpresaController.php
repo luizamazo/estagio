@@ -5,16 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Empresa;
 use App\Log;
+use App\Endereco;
 
 class EmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     * 
-     * 
-     */
+    
 
     public function __construct()
     {
@@ -28,45 +23,44 @@ class EmpresaController extends Controller
         return view('empresa.empresas', compact('empr'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
         return view('empresa.novaempresa');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
+    
+        $end = new Endereco();
+            $rua = $end->rua = $request->input('rua');
+            $end->bairro = $request->input('bairro');
+            $end->cidade = $request->input('cidade');
+            $end->cep = $request->input('cep');
+            $end->save();
+
+
+        $e_id = Endereco::where('rua', $rua)->first()->id;
+
         $empr = new Empresa();
-        $target = $empr->razao_social = $request->input('razaoSocial');
+        $target = $empr->nome = $request->input('razaoSocial');
         $empr->ramo = $request->input('ramo');
         $empr->cnpj = $request->input('cnpj');
-        $empr->endereco = $request->input('endereco');
-        $empr->contato = $request->input('contato');
+        $empr->telefone = $request->input('contato');
+        $empr->site = $request->input('site');
+        $empr->email = $request->input('email');
         $empr->representante = $request->input('representante');
+        $empr->end_id = $e_id;
         $empr->save();
 
         $log = new Log();
         $log->log('criou', 'empresa', $target);
 
-        return redirect('/empresas');
+        return redirect('/empresa');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show($id)
     {  
        
@@ -75,12 +69,7 @@ class EmpresaController extends Controller
         return view('empresa.empresa-id', compact('empr'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit($id)
     {
         
@@ -92,46 +81,46 @@ class EmpresaController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         $empr = Empresa::find($id);
         if(isset($empr)) {
-            $target = $empr->razao_social = $request->input('razaoSocial');
+            $target = $empr->nome = $request->input('razaoSocial');
             $empr->ramo = $request->input('ramo');
-            $empr->cnpj = $request->input('cnpj');
-            $empr->endereco = $request->input('endereco');
-            $empr->contato = $request->input('contato');
+            
+            $empr->endereco()->where('id', $empr->end_id)->update([
+                'rua'=> $request->input('rua'),
+                'bairro' => $request->input('bairro'),
+                'cidade' => $request->input('cidade'),
+                'cep' => $request->input('cep')
+                ]);
+
+            $empr->site = $request->input('site');
+            $empr->telefone = $request->input('contato');
+            $empr->email = $request->input('email');
             $empr->representante = $request->input('representante');
             $empr->save();
 
             $log = new Log();
             $log->log('editou', 'empresa', $target);
         }
-        return redirect('/empresas');
+        return redirect('/empresa');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
+        $end_id = Empresa::where('id', $id)->first()->end_id;
         $empr = Empresa::find($id);
         if (isset($empr)) {
+            $end = Endereco::find($end_id);
+            $end->delete();
             $empr->delete();
             $log = new Log();
             $target = $empr->nome;
             $log->log('deletou', 'empresa', $target);
         }
-        return redirect('/empresas');
+        return redirect('/empresa');
     }
 }

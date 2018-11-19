@@ -36,6 +36,20 @@ return [
     |
     */
     
+
+    /////////////////////////////////////////////////////////////
+    /* 
+    Tipos de autenticação que sua aplicação suporta
+       - web: pelo browser
+       - api: utilizando webservices a partir de dispositivos móveis ou outros sistemas integrados 
+    */
+    /////////////////////////////////////////////////////////////
+    /* 
+    Forma de autenticação utilizada para cada tipo (guards) 
+        - session: utiliza sessão, db ou cookie 
+        - token: utiliza token que é passado em cada requisição 
+    */
+
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -47,8 +61,7 @@ return [
             'provider' => 'users',
         ],
 
-        /*adicionando suporte à autenticação de admin */
-
+// =>>> novo
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -83,11 +96,13 @@ return [
             'model' => App\User::class,
         ],
 
-        /*adicionando suporte à autenticação de admin */
+// =>>> novo
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
+/////////////
+
         // 'users' => [
         //     'driver' => 'database',   // ======>>>>> utiliza o query builder
         //     'table' => 'users',
@@ -115,13 +130,13 @@ return [
             'table' => 'password_resets',
             'expire' => 60,   // minutos
         ],
- 
+/////// ==>>> novo        
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-    
+///////////        
     ],
 
 ];

@@ -6,12 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Cadastro de Aluno') }}</div>
-
+                
                 <div class="card-body">
-                    <form method="POST" action="/cadastrar/aluno">
+                    <form method="POST" action="/aluno">
                         @csrf
-
                         <div class="form-group">
+                           *Para cadastrar, um usuário já precisa ter sido previamente criado.
                             <label for="nome">Nome Completo</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome">
 
@@ -26,35 +26,64 @@
 
                             <label for="rg">RG</label>
                             <input type="text" class="form-control" name="rg" placeholder="RG">
-                            
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="exemplo@exemplo.com">
 
-                            <label for="contato">Contato</label>
-                            <input type="text" class="form-control" name="contato" placeholder="Contato">
+                            <label for="email">Email</label>                       
+                            <input type="email" class="form-control" name="email">
+                            
+                            <label for="telefone">Telefone</label>
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="fixo" placeholder="Fixo">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="celular" placeholder="Celular"> 
+                                </div>
+                            </div>
+
 
                             <label for="endereco">Endereço</label>
-                            <input type="text" class="form-control" name="endereco" placeholder="Rua, Bairro">
-
-                            <label for="cidade">Cidade</label>
-                            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
-
-                            <label for="cep">CEP</label>
-                            <input type="text" class="form-control" name="cep" placeholder="99999999">
+                            <div class="form-row">
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="rua" placeholder="Rua">
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                                </div>    
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                                </div>    
+                                <div class="col">
+                                    <input type="text" class="form-control" name="cep" placeholder="CEP">
+                                </div>
+                            </div>
 
                             <label for="instituicao">Instituição</label>
-                            <input type="text" class="form-control" name="instituicao" placeholder="Instituicao">
+                                <select class="custom-select" name="instituicao">
+                                    <option value="" disabled selected>Selecione uma instituição</option>
+                                    @foreach($inst as $ins)
+                                        <option value="{{$ins->id}}">{{$ins->nome}}</option>
+                                    @endforeach
+                                </select>
 
                             <label for="campus">Campus</label>
-                            <input type="text" class="form-control" name="campus" placeholder="Campus">
+                                <select class="custom-select" name="campus">
+                                    <option value="" disabled selected>Selecione um Campus</option>
+                                    @foreach($campus as $cam)
+                                        <option value="{{$cam->id}}">{{$cam->nome}}</option>
+                                    @endforeach
+                                </select>    
 
                             <label for="curso">Curso</label>
-                            <input type="text" class="form-control" name="curso" placeholder="Curso">
+                                <select class="custom-select" name="curso">
+                                    <option value="" disabled selected>Selecione um curso</option>
+                                    @foreach($curso as $curs)
+                                        <option value="{{$curs->id}}">{{$curs->nome}}</option>
+                                    @endforeach
+                                </select>
 
                             <label for="semestre">Semestre</label>
                             <input type="text" class="form-control" name="semestre" placeholder="Semestre">
-
-                           
+                        
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
                         <a href="{{ route('home') }}" class="btn btn-danger btn-sm">Cancelar</a>

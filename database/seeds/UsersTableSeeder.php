@@ -5,16 +5,17 @@ use App\User;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         User::create([
-            'name' =>  'Lana Del Rey', //coordenador
+            'name' =>  'Lana', //coordenador
             'email' => 'lana@hotmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        User::create([
+            'name' =>  'Sansa', //supervisor
+            'email' => 'sansa@hotmail.com',
             'password' => bcrypt('123456'),
         ]);
 
@@ -24,10 +25,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
 
-        User::create([
-            'name' =>  'Sansa', //supervisor
-            'email' => 'sansa@hotmail.com',
-            'password' => bcrypt('123456'),
-        ]);
+      
     }
 }
+

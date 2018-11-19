@@ -14,7 +14,15 @@
                         </div>
                     @endif
 
-                   Logado como usuário
+                    <h3>Você está logado como USUÁRIO</h3>
+                    <br>
+                     <div class="links">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastrar Usuário') }}</a></li>
+                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
+                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
+                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
+                        <a class='btn btn-lg btn-danger' href="https://laravel.com/docs">TESTANO</a>
+                    </div>
                 </div>
             </div>
         </div>
