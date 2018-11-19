@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Cadastro de Instituição') }}</div>
-                <form method="POST" action="/instituicao">
+                <form method="POST" action="/cadastrar/instituicao">
                      @csrf
                  <div class="card-body">
                     <div class="form-group">
@@ -17,10 +17,7 @@
                                 <input type="text" class="form-control" name="cnpj" placeholder="CNPJ">
 
                                  <label for="tipo">Tipo</label>
-                                <select class="custom-select" name="tipo" id="tipo">
-                                    <option value="Pública">Pública</option>
-                                    <option value="Privada">Privada</option>
-                                </select>
+                                <input type="text" class="form-control" name="tipo" placeholder="Tipo">
                          
                                 <label for="contato">Contato</label>
                                 <input type="text" class="form-control" name="contato" placeholder="Contato">
@@ -32,24 +29,11 @@
                                 <input type="text" class="form-control" name="site" placeholder="Site">
 
                                 <label for="endereco">Endereço</label>
-                                    <div class="form-row">
-                                        <div class="col-3">
-                                            <input type="text" class="form-control" name="rua" placeholder="Rua">
-                                        </div>
-                                        <div class="col-3">
-                                            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
-                                        </div>    
-                                        <div class="col-3">
-                                            <input type="text" class="form-control" name="cidade" placeholder="Cidade">
-                                        </div>    
-                                        <div class="col">
-                                            <input type="text" class="form-control" name="cep" placeholder="CEP">
-                                        </div>
-                                    </div>         
+                                <input type="text" class="form-control" name="endereco" placeholder="Endereco">
 
                                 <label for="campus">Campus</label>
-                                <input type="text" class="form-control" name="campus" placeholder="Campus">
-
+                                <input type="text" class="form-control" name="campus" placeholder="campus">
+                            
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
                             <a href="{{ route('home') }}" class="btn btn-danger btn-sm">Cancelar</a>  

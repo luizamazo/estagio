@@ -17,17 +17,11 @@
                                <h5>EMAIL: {{$ins->email}}</h5>
                                <h5>SITE: {{$ins->site}}</h5>
                                <h5>TIPO: {{$ins->tipo}}</h5>
-                               <h5>CAMPUS: {{$campus}}</h5>
-                               <h5>ENDEREÇO: {{$ins->endereco->rua}} | Bairro: {{$ins->endereco->bairro}}</h5>
-                               <h5>CIDADE: {{$ins->endereco->cidade}}</h5>
-                               <h5>CEP: {{$ins->endereco->cep}}</h5>
+                               <h5>CAMPUS: {{$ins->campus}}</h5>
+                               <h5>ENDERECO: {{$ins->endereco}}</h5>
                               
-                               <form action="/instituicao/{{$ins->id}}" method="POST">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <a href="/instituicao/{{$ins->id}}/edit" class="btn btn-sm btn-warning">Editar</a>
-                                         <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
-                                    </form>     
+                               <a href="/editar/instituicao/{{$ins->id}}" class="btn btn-sm btn-warning">Editar</a>
+                               <a href="/deletar/instituicao/{{$ins->id}}" class="btn btn-sm btn-danger">Apagar</a>    
                 @endforeach          
 
                                 <!-- põe um scroll aqui-->
@@ -38,6 +32,7 @@
                                 <table class="table table-ordered table-hover table-bordered">
                                     <thead>
                                         <tr>
+                                    
                                             <th>Nome</th>
                                             <th>Ações</th>
                                         </tr>
@@ -47,11 +42,7 @@
                                         <tr>
                                             <td>{{$cur->nome}}</td>
                                             <td>
-                                            <form action="/curso/{{$cur->id}}" method="POST">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-                                                <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
-                                    </form>     
+                                                <a href="/deletar/curso/{{$cur->id}}" class="btn btn-sm btn-danger">Apagar</a>
                                             </td>
                                         
                                         </tr>
@@ -60,12 +51,7 @@
                                 </table>
                 @endif
                 @if(count($curso) == 0)
-                    <h5>Ainda não há cursos cadastrados para essa instituição</h5><br>
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <a href="/curso/create" class="btn btn-success center-block">Adicionar Novo Curso</a>  
-                        </div>
-                    </div>
+                    <h5>Ainda não há cursos cadastrados para essa instituição</h5>
                 @endif        
                 </div>
             </div>

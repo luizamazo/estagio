@@ -25,18 +25,18 @@
                 @foreach($alu as $al)
                             <tr>
                                 <td>{{$al->rga}}</td>
-                                <td>{{ucwords($al->pessoa->nome)}}</td>
-                                <td>{{$al->instituicao->nome}}</td>
-                                <td>{{$al->campus->nome}}</td>
-                                <td>{{$al->curso->nome}}</td>
+                                <td>{{$al->nome}}</td>
+                                <td>{{$al->instituicao}}</td>
+                                <td>{{$al->campus}}</td>
+                                <td>{{$al->curso}}</td>
                                 <td>{{$al->semestre}}</td>
                                 <td>
                                    
-                                    <form action="/aluno/{{$al->id}}" method="POST">
+                                    <form action="/deletar/aluno/{{$al->id}}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <a href="/aluno/{{$al->id}}" class="btn btn-sm btn-primary">Ver</a>
-                                        <a href="/aluno/{{$al->id}}/edit" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="/mostrar/aluno/{{$al->id}}" class="btn btn-sm btn-primary">Ver</a>
+                                        <a href="/editar/aluno/{{$al->id}}" class="btn btn-sm btn-warning">Editar</a>
                                          <button  type="submit" class="btn btn-sm btn-danger">Apagar</button>
                                     </form>
                                     
@@ -46,13 +46,7 @@
                 @endforeach                
                         </tbody>
                     </table>
-                @endif     
-
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <a href="/aluno/create" class="btn btn-success center-block">Adicionar Novo Aluno</a>  
-                        </div>
-                    </div>   
+                @endif        
                 </div>
             </div>
         </div>

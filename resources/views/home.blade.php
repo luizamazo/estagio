@@ -14,14 +14,7 @@
                         </div>
                     @endif
 
-                     <div class="links">
-                        <a class='btn btn-lg btn-danger' href="/aluno">Lista de alunos</a>
-                        <a class='btn btn-lg btn-danger' href="/supervisor">Lista de supervisores</a>
-                        <a class='btn btn-lg btn-danger' href="/coordenador">Lista de coordenadores</a>
-                        <a class='btn btn-lg btn-danger' href="/instituicao">Lista de instituições</a>
-                        <a class='btn btn-lg btn-danger' href="/empresa">Lista de empresas</a>
-                        <a class='btn btn-lg btn-danger' href="/vaga">Lista de vagas de estágio</a>
-                    </div>
+                   Logado como usuário
                 </div>
             </div>
         </div>
