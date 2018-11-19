@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>srtdash - ICO Dashboard</title>
+    <title>Button Group - srtdash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -46,10 +46,10 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li class="active">
+                            <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
                                 <ul class="collapse">
-                                    <li class="active"><a href="index.html">ICO dashboard</a></li>
+                                    <li><a href="index.html">ICO dashboard</a></li>
                                     <li><a href="index2.html">Ecommerce dashboard</a></li>
                                     <li><a href="index3.html">SEO dashboard</a></li>
                                 </ul>
@@ -71,14 +71,14 @@
                                     <li><a href="piechart.html">pie chart</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>UI Features</span></a>
                                 <ul class="collapse">
                                     <li><a href="accordion.html">Accordion</a></li>
                                     <li><a href="alert.html">Alert</a></li>
                                     <li><a href="badge.html">Badge</a></li>
                                     <li><a href="button.html">Button</a></li>
-                                    <li><a href="button-group.html">Button Group</a></li>
+                                    <li class="active"><a href="button-group.html">Button Group</a></li>
                                     <li><a href="cards.html">Cards</a></li>
                                     <li><a href="dropdown.html">Dropdown</a></li>
                                     <li><a href="list-group.html">List Group</a></li>
@@ -335,7 +335,7 @@
                             <h4 class="page-title pull-left">Dashboard</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="index.html">Home</a></li>
-                                <li><span>Dashboard</span></li>
+                                <li><span>button Group</span></li>
                             </ul>
                         </div>
                     </div>
@@ -354,356 +354,378 @@
             </div>
             <!-- page title area end -->
             <div class="main-content-inner">
-                <!-- sales report area start -->
-                <div class="sales-report-area mt-5 mb-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="single-report mb-xs-30">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-btc"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Bitcoin</h4>
-                                        <p>24 H</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h2>$ 4567809,987</h2>
-                                        <span>- 45.87</span>
-                                    </div>
-                                </div>
-                                <canvas id="coin_sales1" height="100"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-report mb-xs-30">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-btc"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Bitcoin Dash</h4>
-                                        <p>24 H</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h2>$ 4567809,987</h2>
-                                        <span>- 45.87</span>
-                                    </div>
-                                </div>
-                                <canvas id="coin_sales2" height="100"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-report">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-eur"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Euthorium</h4>
-                                        <p>24 H</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h2>$ 4567809,987</h2>
-                                        <span>- 45.87</span>
-                                    </div>
-                                </div>
-                                <canvas id="coin_sales3" height="100"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- sales report area end -->
-                <!-- overview area start -->
                 <div class="row">
-                    <div class="col-xl-9 col-lg-8">
+                    <!-- button Group srea start -->
+                    <div class="col-lg-6 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="header-title mb-0">Overview</h4>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Last 24 Hours</option>
-                                        <option value="0">01 July 2018</option>
-                                    </select>
+                                <h4 class="header-title">Basic Button Group</h4>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-primary">Left</button>
+                                    <button type="button" class="btn btn-primary">Middle</button>
+                                    <button type="button" class="btn btn-primary">Right</button>
                                 </div>
-                                <div id="verview-shart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 coin-distribution">
-                        <div class="card h-full">
-                            <div class="card-body">
-                                <h4 class="header-title mb-0">Coin Distribution</h4>
-                                <div id="coin_distribution"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- overview area end -->
-                <!-- market value area start -->
-                <div class="row mt-5 mb-5">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-sm-flex justify-content-between align-items-center">
-                                    <h4 class="header-title mb-0">Market Value And Trends</h4>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Last 24 Hours</option>
-                                        <option value="0">01 July 2018</option>
-                                    </select>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-secondary">Left</button>
+                                    <button type="button" class="btn btn-secondary">Middle</button>
+                                    <button type="button" class="btn btn-secondary">Right</button>
                                 </div>
-                                <div class="market-status-table mt-4">
-                                    <div class="table-responsive">
-                                        <table class="dbkit-table">
-                                            <tr class="heading-td">
-                                                <td class="mv-icon">Logo</td>
-                                                <td class="coin-name">Coin Name</td>
-                                                <td class="buy">Buy</td>
-                                                <td class="sell">Sells</td>
-                                                <td class="trends">Trends</td>
-                                                <td class="attachments">Attachments</td>
-                                                <td class="stats-chart">Stats</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon"><img src="assets/images/icon/market-value/icon1.png" alt="icon">
-                                                </td>
-                                                <td class="coin-name">Dashcoin</td>
-                                                <td class="buy">30% <img src="assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="assets/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
-                                                <td class="attachments">$ 56746,857</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart"></canvas>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="assets/images/icon/market-value/icon2.png" alt="icon"></div>
-                                                </td>
-                                                <td class="coin-name">LiteCoin</td>
-                                                <td class="buy">30% <img src="assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="assets/images/icon/market-value/trends-down-icon.png" alt="icon"></td>
-                                                <td class="attachments">$ 56746,857</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart2"></canvas>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="assets/images/icon/market-value/icon3.png" alt="icon"></div>
-                                                </td>
-                                                <td class="coin-name">Euthorium</td>
-                                                <td class="buy">30% <img src="assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="assets/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
-                                                <td class="attachments">$ 56746,857</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart3"></canvas>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="assets/images/icon/market-value/icon4.png" alt="icon"></div>
-                                                </td>
-                                                <td class="coin-name">Bitcoindash</td>
-                                                <td class="buy">30% <img src="assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="assets/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
-                                                <td class="attachments">$ 56746,857</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart4"></canvas>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-success">Left</button>
+                                    <button type="button" class="btn btn-success">Middle</button>
+                                    <button type="button" class="btn btn-success">Right</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-danger">Left</button>
+                                    <button type="button" class="btn btn-danger">Middle</button>
+                                    <button type="button" class="btn btn-danger">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-warning">Left</button>
+                                    <button type="button" class="btn btn-warning">Middle</button>
+                                    <button type="button" class="btn btn-warning">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-info">Left</button>
+                                    <button type="button" class="btn btn-info">Middle</button>
+                                    <button type="button" class="btn btn-info">Right</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-light">Left</button>
+                                    <button type="button" class="btn btn-light">Middle</button>
+                                    <button type="button" class="btn btn-light">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-success">Left</button>
+                                    <button type="button" class="btn btn-success">Middle</button>
+                                    <button type="button" class="btn btn-success">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-dark">Left</button>
+                                    <button type="button" class="btn btn-dark">Middle</button>
+                                    <button type="button" class="btn btn-dark">Right</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- market value area end -->
-                <!-- row area start -->
-                <div class="row">
-                    <!-- Live Crypto Price area start -->
-                    <div class="col-lg-4">
+                    <!-- button Group srea end -->
+                    <!-- button toolbar srea start -->
+                    <div class="col-lg-6 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Live Crypto Price</h4>
-                                <div class="cripto-live mt-5">
-                                    <ul>
-                                        <li>
-                                            <div class="icon b">b</div> Bitcoin<span><i class="fa fa-long-arrow-up"></i>$876909.00</span></li>
-                                        <li>
-                                            <div class="icon l">l</div> Litecoin<span><i class="fa fa-long-arrow-up"></i>$29780.00</span></li>
-                                        <li>
-                                            <div class="icon d">d</div> Dashcoin<span><i class="fa fa-long-arrow-up"></i>$13276.00</span></li>
-                                        <li>
-                                            <div class="icon b">b</div> Bitcoindash<span><i class="fa fa-long-arrow-down"></i>$5684.890</span></li>
-                                        <li>
-                                            <div class="icon e">e</div> Euthorium<span><i class="fa fa-long-arrow-down"></i>$3890.98</span></li>
-                                        <li>
-                                            <div class="icon t">b</div> Tcoin<span><i class="fa fa-long-arrow-up"></i>$750.789</span></li>
-                                        <li>
-                                            <div class="icon b">b</div> Bitcoin<span><i class="fa fa-long-arrow-up"></i>$325.037</span></li>
-                                    </ul>
+                                <h4 class="header-title">Basic toolbar</h4>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-primary mb-xl-3">1</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">2</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">3</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">4</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">5</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">6</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">7</button>
+                                    <button type="button" class="btn btn-primary mb-xl-3">9</button>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-success mb-xl-3">10</button>
+                                    <button type="button" class="btn btn-success mb-xl-3">11</button>
+                                    <button type="button" class="btn btn-success mb-xl-3">12</button>
+                                    <button type="button" class="btn btn-success mb-xl-3">14</button>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-info mb-xl-3">15</button>
+                                    <button type="button" class="btn btn-info mb-xl-3">16</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-secondary mb-xl-3">17</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">18</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">19</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">20</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">21</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">22</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">23</button>
+                                    <button type="button" class="btn btn-secondary mb-xl-3">24</button>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-warning mb-xl-3">25</button>
+                                    <button type="button" class="btn btn-warning mb-xl-3">26</button>
+                                    <button type="button" class="btn btn-warning mb-xl-3">27</button>
+                                    <button type="button" class="btn btn-warning mb-xl-3">28</button>
+                                    <button type="button" class="btn btn-warning mb-xl-3">29</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-danger mb-xl-3">31</button>
+                                    <button type="button" class="btn btn-danger mb-xl-3">32</button>
+                                    <button type="button" class="btn btn-danger mb-xl-3">33</button>
+                                    <button type="button" class="btn btn-danger mb-xl-3">34</button>
+                                    <button type="button" class="btn btn-danger mb-xl-3">35</button>
+                                    <button type="button" class="btn btn-danger mb-xl-3">36</button>
+                                    <button type="button" class="btn btn-danger mb-xl-3">37</button>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-dark mb-xl-3">38</button>
+                                    <button type="button" class="btn btn-dark mb-xl-3">39</button>
+                                    <button type="button" class="btn btn-dark mb-xl-3">40</button>
+                                    <button type="button" class="btn btn-dark mb-xl-3">41</button>
+                                    <button type="button" class="btn btn-dark mb-xl-3">42</button>
+                                    <button type="button" class="btn btn-dark mb-xl-3">43</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Live Crypto Price area end -->
-                    <!-- trading history area start -->
-                    <div class="col-lg-8 mt-sm-30 mt-xs-30">
+                    <!-- button toolbar srea end -->
+                    <!-- button Sizing srea start -->
+                    <div class="col-lg-6 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-sm-flex justify-content-between align-items-center">
-                                    <h4 class="header-title">Trading History</h4>
-                                    <div class="trd-history-tabs">
-                                        <ul class="nav" role="tablist">
-                                            <li>
-                                                <a class="active" data-toggle="tab" href="#buy_order" role="tab">Buy Order</a>
-                                            </li>
-                                            <li>
-                                                <a data-toggle="tab" href="#sell_order" role="tab">Sell Order</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Last 24 Hours</option>
-                                        <option value="0">01 July 2018</option>
-                                    </select>
+                                <h4 class="header-title">Button Sizing</h4>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-lg btn-primary">Left</button>
+                                    <button type="button" class="btn btn-lg btn-primary">Middle</button>
+                                    <button type="button" class="btn btn-lg btn-primary">Right</button>
                                 </div>
-                                <div class="trad-history mt-4">
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="buy_order" role="tabpanel">
-                                            <div class="table-responsive">
-                                                <table class="dbkit-table">
-                                                    <tr class="heading-td">
-                                                        <td>Trading ID</td>
-                                                        <td>Time</td>
-                                                        <td>Status</td>
-                                                        <td>Amount</td>
-                                                        <td>Last Trade</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>78211</td>
-                                                        <td>4.00 AM</td>
-                                                        <td>Pending</td>
-                                                        <td>$758.90</td>
-                                                        <td>$05245.090</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>782782</td>
-                                                        <td>4.00 AM</td>
-                                                        <td>Pending</td>
-                                                        <td>$77878.90</td>
-                                                        <td>$7778.090</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>89675978</td>
-                                                        <td>4.00 AM</td>
-                                                        <td>Pending</td>
-                                                        <td>$0768.90</td>
-                                                        <td>$0945.090</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="sell_order" role="tabpanel">
-                                            <div class="table-responsive">
-                                                <table class="dbkit-table">
-                                                    <tr class="heading-td">
-                                                        <td>Trading ID</td>
-                                                        <td>Time</td>
-                                                        <td>Status</td>
-                                                        <td>Amount</td>
-                                                        <td>Last Trade</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>8964978</td>
-                                                        <td>4.00 AM</td>
-                                                        <td>Pending</td>
-                                                        <td>$445.90</td>
-                                                        <td>$094545.090</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>89675978</td>
-                                                        <td>4.00 AM</td>
-                                                        <td>Pending</td>
-                                                        <td>$78.90</td>
-                                                        <td>$074852945.090</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>78527878</td>
-                                                        <td>4.00 AM</td>
-                                                        <td>Pending</td>
-                                                        <td>$0768.90</td>
-                                                        <td>$65465.090</td>
-                                                    </tr>
-                                                </table>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-lg btn-secondary">Left</button>
+                                    <button type="button" class="btn btn-lg btn-secondary">Middle</button>
+                                    <button type="button" class="btn btn-lg btn-secondary">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-lg btn-success">Left</button>
+                                    <button type="button" class="btn btn-lg btn-success">Middle</button>
+                                    <button type="button" class="btn btn-lg btn-success">Right</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-md btn-danger">Left</button>
+                                    <button type="button" class="btn btn-md btn-danger">Middle</button>
+                                    <button type="button" class="btn btn-md btn-danger">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-md btn-warning">Left</button>
+                                    <button type="button" class="btn btn-md btn-warning">Middle</button>
+                                    <button type="button" class="btn btn-md btn-warning">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-md btn-info">Left</button>
+                                    <button type="button" class="btn btn-md btn-info">Middle</button>
+                                    <button type="button" class="btn btn-md btn-info">Right</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-sm btn-primary">Left</button>
+                                    <button type="button" class="btn btn-sm btn-primary">Middle</button>
+                                    <button type="button" class="btn btn-sm btn-primary">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-sm btn-success">Left</button>
+                                    <button type="button" class="btn btn-sm btn-success">Middle</button>
+                                    <button type="button" class="btn btn-sm btn-success">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-sm btn-dark">Left</button>
+                                    <button type="button" class="btn btn-sm btn-dark">Middle</button>
+                                    <button type="button" class="btn btn-sm btn-dark">Right</button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-xs btn-primary">Left</button>
+                                    <button type="button" class="btn btn-xs btn-primary">Middle</button>
+                                    <button type="button" class="btn btn-xs btn-primary">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-xs btn-success">Left</button>
+                                    <button type="button" class="btn btn-xs btn-success">Middle</button>
+                                    <button type="button" class="btn btn-xs btn-success">Right</button>
+                                </div>
+                                <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-xs btn-dark">Left</button>
+                                    <button type="button" class="btn btn-xs btn-dark">Middle</button>
+                                    <button type="button" class="btn btn-xs btn-dark">Right</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- button Sizing srea end -->
+                    <!-- button Nesting srea start -->
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Button Nesting</h4>
+                                <div class="row">
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-primary">1</button>
+                                        <button type="button" class="btn btn-primary">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- trading history area end -->
-                </div>
-                <!-- row area end -->
-                <div class="row mt-5">
-                    <!-- latest news area start -->
-                    <div class="col-xl-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Latest News</h4>
-                                <div class="letest-news mt-5">
-                                    <div class="single-post mb-xs-40 mb-sm-40">
-                                        <div class="lts-thumb">
-                                            <img src="assets/images/blog/post-thumb1.jpg" alt="post thumb">
-                                        </div>
-                                        <div class="lts-content">
-                                            <span>Admin Post</span>
-                                            <h2><a href="blog.html">Sed ut perspiciatis unde omnis iste.</a></h2>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some...</p>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-secondary">1</button>
+                                        <button type="button" class="btn btn-secondary">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="single-post">
-                                        <div class="lts-thumb">
-                                            <img src="assets/images/blog/post-thumb2.jpg" alt="post thumb">
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-success">1</button>
+                                        <button type="button" class="btn btn-success">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
                                         </div>
-                                        <div class="lts-content">
-                                            <span>Admin Post</span>
-                                            <h2><a href="blog.html">Sed ut perspiciatis unde omnis iste.</a></h2>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some...</p>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-danger">1</button>
+                                        <button type="button" class="btn btn-danger">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop3" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-warning">1</button>
+                                        <button type="button" class="btn btn-warning">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop4" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-info">1</button>
+                                        <button type="button" class="btn btn-info">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop5" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-xl-5">
+                                        <h4 class="header-title">Button Nesting Flat</h4>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-flat btn-light">1</button>
+                                        <button type="button" class="btn btn-flat btn-light">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop6" type="button" class="btn btn-flat btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-flat btn-success">1</button>
+                                        <button type="button" class="btn btn-flat btn-success">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop7" type="button" class="btn btn-flat btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-flat btn-info">1</button>
+                                        <button type="button" class="btn btn-flat btn-info">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop8" type="button" class="btn btn-flat btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-flat btn-warning">1</button>
+                                        <button type="button" class="btn btn-flat btn-warning">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop9" type="button" class="btn btn-flat btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-flat btn-danger">1</button>
+                                        <button type="button" class="btn btn-flat btn-danger">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop10" type="button" class="btn btn-flat btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-lg-4 col-md-6 mb-3" role="group" aria-label="Button group with nested dropdown">
+                                        <button type="button" class="btn btn-flat btn-dark">1</button>
+                                        <button type="button" class="btn btn-flat btn-dark">2</button>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop11" type="button" class="btn btn-flat btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                                <a class="dropdown-item" href="#">Dropdown link</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- latest news area end -->
-                    <!-- exchange area start -->
-                    <div class="col-xl-6 mt-md-30 mt-xs-30 mt-sm-30">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Exchange</h4>
-                                <div class="exhcange-rate mt-5">
-                                    <form action="#">
-                                        <div class="input-form">
-                                            <input type="text" value="0.76834">
-                                            <span>BTC</span>
-                                        </div>
-                                        <div class="exchange-devider">To</div>
-                                        <div class="input-form">
-                                            <input type="text" value="5689.846">
-                                            <span>USD</span>
-                                        </div>
-                                        <div class="exchange-btn">
-                                            <button type="submit">Exchange Now</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- exchange area end -->
+                    <!-- button Nesting srea end -->
                 </div>
-                <!-- row area start-->
             </div>
         </div>
         <!-- main content area end -->
@@ -903,21 +925,6 @@
     <script src="assets/js/metisMenu.min.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
     <script src="assets/js/jquery.slicknav.min.js"></script>
-
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- start zingchart js -->
-    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-    <script>
-    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-    </script>
-    <!-- all line chart activation -->
-    <script src="assets/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    <script src="assets/js/pie-chart.js"></script>
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js"></script>
