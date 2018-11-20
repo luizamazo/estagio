@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use Tymon\JWTAuth\Exception\JWTException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use JWTAuth;
 
 class UserController extends Controller {
     
-    public function signup(Request $request){
+    public function register(Request $request){
         $this->validate($request, [
-            'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email|unique:users'
         ]);
 
         $user = new User([
-            'name' => $request->input('name'),
+            'name' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password'))
         ]);
@@ -28,7 +29,7 @@ class UserController extends Controller {
         ], 201);
     }
 
-    public function signin(Request $request){
+    public function login(Request $request){
 
         $this->validate($request, [
             'email' => 'required|email',
@@ -51,10 +52,19 @@ class UserController extends Controller {
                 'error' => 'could not create token'
             ], 500);
         }
-
+      //  $user = JWTAuth::parseToken()->toUser();
+      $user = User::where('email', $request->input('email'))->first();
         //se deu certo, token é enviado lá pro front
         return response()->json([
-            'token' => $token
+            'token' => $token,
+            'user' => $user
         ], 200);
+    }
+
+    public function logout(){
+        
+        auth()->logout();
+
+        return response()->json(['msg' => 'tchau....']);
     }
 }

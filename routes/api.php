@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Auth::routes(); 
 
 //criar uma nova quote
 Route::post('/quote', [
@@ -35,10 +36,38 @@ Route::delete('/quote/{id}', [
     'middleware' => 'jwt.auth'
 ]);
 
+/////////////////////////////////////////////////
+
 Route::post('/user', [
-    'uses' => 'UserController@signup'
+    'uses' => 'UserController@register'
 ]);
 
-Route::post('/user/signin', [
-    'uses' => 'UserController@signin'
+Route::post('/user/login', [
+    'uses' => 'UserController@login'
+]);
+
+Route::post('/user/logout', [
+    'uses' => 'UserController@logout',
+    'middleware' => 'jwt.auth'
+]);
+
+Route::get('/user/dashboard', [
+    'middleware' => 'jwt.auth'
+]);
+
+Route::get('/logs', [
+    'uses' => 'LogController@index',
+    'middleware' => 'jwt.auth'
+]);
+
+Route::delete('/logs', [
+    'uses' => 'LogController@destroy',
+    'middleware' => 'jwt.auth'
+]);
+
+/*Route::get('/aluno/{id}', [
+    'uses' => 'AlunoController@show'
+]); */
+Route::resource('/aluno', 'AlunoController', [
+    'middleware' => 'jwt.auth'
 ]);
