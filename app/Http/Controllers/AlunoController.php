@@ -17,11 +17,6 @@ use App\Log;
 class AlunoController extends Controller
 {
 
-    public function __construct()
-    {
-        
-    }
-    
     public function index()
     {
         $alunos = Aluno::with('pessoa', 'endereco', 'telefone', 'instituicao', 'campus', 'curso')->get();
@@ -176,6 +171,7 @@ class AlunoController extends Controller
         $end_id = Aluno::where('id', $id)->first()->end_id;
         $tel_id = Aluno::where('id', $id)->first()->tel_id;
         $pessoa_id = Aluno::where('id', $id)->first()->pessoa_id;
+        $user_id = Pessoa::where('id', $pessoa_id)->first()->user_id;
         $target = Pessoa::where('id', $pessoa_id)->first()->nome;
         
         $pessoa = Pessoa::find($pessoa_id);
@@ -187,9 +183,11 @@ class AlunoController extends Controller
         $tel = Telefone::find($tel_id);
         $tel->delete();
 
+        $user = User::find($user_id);
+        $user->delete();
+
         $log = new Log();
         $log->log('deletou', 'aluno', $target);
-        
-        return redirect('/aluno');
+    
     }
 }
