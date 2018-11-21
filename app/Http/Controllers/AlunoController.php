@@ -45,8 +45,10 @@ class AlunoController extends Controller
     }
     
     public function store(Request $request)
-    {
-        app('App\Http\Controllers\UserController')->register($request);
+    {   
+        $role = $request->input('role');
+        
+        app('App\Http\Controllers\UserController')->register($request, $role);
 
         $this->validate($request, [
             'nome' => 'required',
@@ -135,11 +137,10 @@ class AlunoController extends Controller
     {
         $alu = Aluno::find($id);
         if(isset($alu)) {
-
-            $target = $request->input('nome');
            
             //entro na tabela pessoa, busco o id dela q é igual ao id de pessoa_id dentro de aluno, update no nome apenas
-            $alu->pessoa()->where('id', $alu->pessoa_id)->update(['nome'=> $request->input('nome')]);
+            //$alu->pessoa()->where('id', $alu->pessoa_id)->update(['nome'=> $request->input('nome')]);
+            $target = $alu->pessoa()->where('id', $alu->pessoa_id)->get()->first()->nome;
 
             $alu->telefone()->where('id', $alu->tel_id)->update([
                 'fixo' => $request->input('fixo'),

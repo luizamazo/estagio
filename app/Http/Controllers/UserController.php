@@ -10,7 +10,9 @@ use JWTAuth;
 
 class UserController extends Controller {
     
-    public function register(Request $request){
+    public function register(Request $request, $role){
+        
+      
         $this->validate($request, [
             'username' => 'required',
             'email' => 'required|email|unique:users'
@@ -19,7 +21,8 @@ class UserController extends Controller {
         $user = new User([
             'name' => $request->input('username'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password'))
+            'password' => bcrypt($request->input('password')),
+            'role' => $role
         ]);
 
         $user->save();
