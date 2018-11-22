@@ -19,6 +19,7 @@ class CreateSolicitacaosTable extends Migration
             $table->string('fixo')->nullable();
             $table->string('celular');
     
+            $table->string('titulo');
             $table->date('estagioInicio');
             $table->date('estagioFinal');
             $table->text('tarefas');

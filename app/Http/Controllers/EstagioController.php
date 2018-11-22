@@ -26,9 +26,13 @@ class EstagioController extends Controller
     public function store(Request $request, $id)
     {
         $estagio = new Estagio();
-        $estagio->soli_id = $id;
+        $estagio->soli_id = $request->input('soli_id');
         $estagio->status = 'EM ANDAMENTO';
+        $estagio->save();
         //$est_id = Estagio::where('status', 'EM ANDAMENTO')->get()->first()->id;  
+        return Response::json([
+            'msg' => 'estagio ok'
+        ]);
     }
 
   

@@ -80,7 +80,7 @@ Route::post('/solicitacao/fb/{id}', 'SolicitacaoController@update',[
 Route::post('/estagio/{id}', 'EstagioController@store', [
     'middleware' => 'jwt.auth'
 ]);
-Route::post('/estagio/{id}', 'EstagioController@show', [
+Route::get('/estagio/{id}', 'EstagioController@show', [
     'middleware' => 'jwt.auth'
 ]);
 

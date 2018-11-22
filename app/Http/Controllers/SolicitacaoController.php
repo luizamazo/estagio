@@ -44,7 +44,7 @@ class SolicitacaoController extends Controller
        $solicitacao->carga = $request->input('carga');
        
        $solicitacao->vaga_id = $vaga_id;
-
+       $solicitacao->titulo =  Vaga::where('id', $vaga_id)->get()->first()->titulo;
        $coor_id = Vaga::where('id', $vaga_id)->get()->first()->coor_id;
        $solicitacao->coor_id = $coor_id;
        $super_id = Vaga::where('id', $vaga_id)->get()->first()->super_id;
