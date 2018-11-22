@@ -11,13 +11,29 @@ class CreateSolicitacaosTable extends Migration
     {
         Schema::create('solicitacaos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nome');
+            $table->date('nascimento');
+            $table->string('cpf');
+            $table->string('rga');
+            $table->string('fixo')->nullable();
+            $table->string('celular');
+    
+            $table->date('estagioInicio');
+            $table->date('estagioFinal');
+            $table->text('tarefas');
             $table->string('status');
 
             $table->unsignedInteger('vaga_id');
             $table->foreign('vaga_id')->references('id')->on('vagas');
-
+            
             $table->unsignedInteger('aluno_id');
             $table->foreign('aluno_id')->references('id')->on('alunos');
+            
+            $table->unsignedInteger('super_id');
+            $table->foreign('super_id')->references('id')->on('supervisors');
+            
+            $table->unsignedInteger('coor_id');
+            $table->foreign('coor_id')->references('id')->on('coordenadors');
 
             $table->timestamps();
         });

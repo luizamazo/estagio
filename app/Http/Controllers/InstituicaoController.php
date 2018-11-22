@@ -7,27 +7,29 @@ use App\Instituicao;
 use App\Curso;
 use App\Endereco;
 use App\Campus;
+use Response;
 use App\Log;
 
 class InstituicaoController extends Controller
 {
- 
-    public function __construct()
-    {
-         
-        $this->middleware('auth');
-    }
     
     public function index()
     {
-        $inst = Instituicao::all();
-        return view('instituicao.instituicoes', compact('inst'));
+        $instituicoes = Instituicao::with('endereco')->get();
+        
+        return Response::json([
+            'instituicoes' => $instituicoes
+        ], 200);
     }
 
  
     public function create()
     {
-        return view('instituicao.novainstituicao');
+        $campuses = Campus::all();
+
+        return Response::json([
+            'campuses' => $campuses
+        ]);
     }
 
     public function store(Request $request)
@@ -51,32 +53,44 @@ class InstituicaoController extends Controller
         $inst->save();
 
         $i_id = Instituicao::where('cnpj', $cnpj)->first()->id;
+        $campus_id = $request->input('campus');
+
+        //AGORINHA ARRUMO ISSO
         $campus = new Campus();
-            $campus->nome = $request->input('campus');
+            $campus->nome = 
             $campus->inst_id = $i_id;
             $campus->save();
 
         $log = new Log();
         $log->log('criou', 'instituição', $target);
 
-        return redirect('/instituicao');
+        return Response::json([
+            'msg' => 'deu bom'
+        ], 201);
     }
 
     public function show($id)
     {  
-        $campus = Campus::where('inst_id', $id)->first()->nome;
+        /*
         $inst = Instituicao::where('id', $id)->get();
         $curso = Curso::where('inst_id', $id)->get();
-        return view('instituicao.instituicao-id', compact('inst', 'curso', 'campus'));
+        */
+        $campus = Campus::where('inst_id', $id)->first()->nome;
+        $instituicao = Instituicao::where('id', $id)->with('endereco')->get();
+        $cursos = Curso::where('inst_id', $id)->get();
+
+        return Response::json([
+           'instituicao' => $instituicao,
+           'campus' => $campus,
+           'cursos' => $cursos
+        ], 201);
+       
     }
 
     public function edit($id)
     {
         
-        $inst = Instituicao::find($id);
-        if(isset($inst)) {
-            return view('instituicao.editarinstituicao', compact('inst'));
-        }
+        
     }
 
 
@@ -85,7 +99,7 @@ class InstituicaoController extends Controller
     {
         $inst = Instituicao::find($id);
         if(isset($inst)) {
-            $target = $inst->nome = $request->input('nome');
+            $target = Instituicao::where('id', $id)->get()->first()->nome;
             $inst->telefone = $request->input('contato');
             $inst->email = $request->input('email');
             $inst->site = $request->input('site');
@@ -101,25 +115,45 @@ class InstituicaoController extends Controller
             $log = new Log();
             $log->log('editou', 'instituição', $target);
         }
-        return redirect('/instituicao');
+        
+        return Response::json([
+            'msg' => 'update ok'
+         ], 201);
     }
 
  
     public function destroy($id)
     {   
         $end_id = Instituicao::where('id', $id)->first()->end_id;
-
         $end = Endereco::find($end_id);
         $end->delete();
 
         $inst = Instituicao::find($id);
         if (isset($inst)) {
-            //logica ta certa mas acho q nao ta indo? vejo depois
             $target = $inst->nome;
             $inst->delete();
             $log = new Log();
             $log->log('deletou', 'instituição', $target);
         }
-        return redirect('/instituicao');
+
+        return Response::json([
+            'msg' => 'deletado ok'
+         ], 201);
+    }
+
+    public function storeCampus(Request $request){
+    
+        $campus = new Campus();
+        $target = $campus->nome = $request->input('nome');
+        $campus->inst_id = $request->input('instituicao');
+        $campus->save();
+
+        $log = new Log();
+     //   $log->log('cadastrou', 'campus', $target);
+        
+            return Response::json([
+                'msg' => 'cadastrado campus ok'
+             ], 201);
+
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Response;
 use App\Telefone;
 use App\Aluno;
 use App\User;
@@ -16,31 +16,46 @@ use App\Pessoa;
 class CoordenadorController extends Controller
 {
     
-    public function __construct()
-    {
-         
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        $cord = Coordenador::all();
-        return view('coordenador.coordenadores', compact('cord'));
+        $coordenadores = Coordenador::with('pessoa', 'telefone', 'instituicao', 'campus', 'curso')->get();
+        return Response::json([
+            'coordenadores' => $coordenadores
+        ], 200);
     }
 
     public function create()
     {
-        $curso = Curso::all();
-        $inst = Instituicao::all();
-        $campus = Campus::all();
-        return view('coordenador.novocoordenador', compact('inst', 'curso', 'campus'));
+        $cursos = Curso::all();
+        $instituicoes = Instituicao::all();
+        $campuses = Campus::all();
+
+        return Response::json([
+            'cursos' => $cursos, 
+            'instituicoes' => $instituicoes,
+            'campuses' => $campuses
+        ], 201);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request, $role)
+    {   
+            $role = $request->input('role');
+            
+            app('App\Http\Controllers\UserController')->register($request, $role);
 
-       
-       //posso fazer função pra inserir pessoa depois
+            $this->validate($request, [
+                'nome' => 'required',
+                'nascimento' => 'required',
+                'celular'=>'required',
+                'cpf' => 'required',
+                'rg'=>'required',
+                'siape'=>'required',
+                'cargo' => 'required',
+                'curso' => 'required',
+                'email' => 'required|email|unique:pessoas',
+                'instituicao' => 'required'
+                ]); 
+                
             $pessoa = new Pessoa();
             $target = $pessoa->nome = $request->input('nome');
             $pessoa->nascimento = $request->input('nascimento');
@@ -74,37 +89,47 @@ class CoordenadorController extends Controller
             $log = new Log();
             $log->log('cadastrou', 'coordenador', $target);
 
-            return redirect('/coordenador');
+            return Response::json([
+                'msg' => 'deu bom'
+            ], 201);
     }
 
    
     public function show($id)
     {  
-        $coor = Coordenador::where('id', $id)->get();
-        return view('coordenador.coordenador-id', compact('coor'));
+        $coordenador = Coordenador::where('id', $id)->with('pessoa', 'telefone', 'instituicao', 'campus', 'curso')->get();
+        return Response::json([
+           'coordenador' => $coordenador
+        ], 201);
        
     }
 
    
     public function edit($id)
     {
-        $inst = Instituicao::all();
-        $curso = Curso::all();
-        $campus = Campus::all();
-        $cord = Coordenador::find($id);
-        if(isset($cord)) {
-            return view('coordenador.editarcoordenador', compact('cord', 'campus', 'curso', 'inst'));
-        }
+        $cursos = Curso::all();
+        $instituicoes = Instituicao::all();
+        $campuses = Campus::all();
+        $coordenador = Coordenador::find($id);
+        
+    
+        return Response::json([
+            'cursos' => $cursos, 
+            'instituicoes' => $instituicoes,
+            'campuses' => $campuses,
+            'coordenador' => $coordenador
+        ], 201);
+        
+       
     }
 
-
-  
     public function update(Request $request, $id)
     {
-        $target = $request->input('nome');
+        
         $cord = Coordenador::find($id);
         if(isset($cord)) {
-            $cord->pessoa()->where('id', $cord->pessoa_id)->update(['nome'=> $request->input('nome')]);
+            $target = $cord->pessoa()->where('id', $cord->pessoa_id)->get()->first()->nome;
+               
             $cord->telefone()->where('id', $cord->tel_id)->update([
                 'fixo' => $request->input('fixo'),
                 'celular' => $request->input('celular')
@@ -120,7 +145,10 @@ class CoordenadorController extends Controller
             $log = new Log();
             $log->log('editou', 'coordenador', $target);
         }
-        return redirect('/coordenador');
+
+        return Response::json([
+            'msg' => 'update ok'
+         ], 201);
     }
 
   
@@ -129,6 +157,7 @@ class CoordenadorController extends Controller
 
         $tel_id = Coordenador::where('id', $id)->first()->tel_id;
         $pessoa_id = Coordenador::where('id', $id)->first()->pessoa_id;
+        $user_id = Pessoa::where('id', $pessoa_id)->first()->user_id;
         $target = Pessoa::where('id', $pessoa_id)->first()->nome;
         
         $pessoa = Pessoa::find($pessoa_id);
@@ -137,9 +166,14 @@ class CoordenadorController extends Controller
         $tel = Telefone::find($tel_id);
         $tel->delete();
 
+        $user = User::find($user_id);
+        $user->delete();
+
         $log = new Log();
         $log->log('deletou', 'coordenador', $target);
-    
-        return redirect('/coordenador');
+
+        return Response::json([
+            'msg' => 'deletado ok'
+         ], 201);
     }
 }

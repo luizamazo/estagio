@@ -14,30 +14,6 @@ use Illuminate\Http\Request;
 */
 Auth::routes(); 
 
-//criar uma nova quote
-Route::post('/quote', [
-    'uses' => 'QuoteController@postQuote',
-    'middleware' => 'jwt.auth'
-]);
-
-//get quotes
-Route::get('/quotes', [
-    'uses' => 'QuoteController@getQuotes'
-]);
-
-//update quote
-Route::put('/quote/{id}', [
-    'uses' => 'QuoteController@putQuote',
-    'middleware' => 'jwt.auth'
-]);
-
-Route::delete('/quote/{id}', [
-    'uses' => 'QuoteController@deleteQuote',
-    'middleware' => 'jwt.auth'
-]);
-
-/////////////////////////////////////////////////
-
 Route::post('/user', [
     'uses' => 'UserController@register'
 ]);
@@ -50,24 +26,45 @@ Route::post('/user/logout', [
     'uses' => 'UserController@logout',
     'middleware' => 'jwt.auth'
 ]);
-
-Route::get('/user/dashboard', [
-    'middleware' => 'jwt.auth'
-]);
-
+/////////////////////////////////////////////////
 Route::get('/logs', [
     'uses' => 'LogController@index',
     'middleware' => 'jwt.auth'
 ]);
-
 Route::delete('/logs', [
     'uses' => 'LogController@destroy',
     'middleware' => 'jwt.auth'
 ]);
+/////////////////////////////////////////////////
+Route::resource('/instituicao', 'InstituicaoController', [
+    'middleware' => 'jwt.auth'
+]);
 
-/*Route::get('/aluno/{id}', [
-    'uses' => 'AlunoController@show'
-]); */
+Route::post('/instituicao/campus', 'InstituicaoController@storeCampus', [
+    'middleware' => 'jwt.auth'
+]);
+Route::resource('/curso', 'CursoController', [
+    'middleware' => 'jwt.auth'
+]);
+/////////////////////////////////////////////////
+Route::resource('/empresa', 'EmpresaController', [
+    'middleware' => 'jwt.auth'
+]);
+/////////////////////////////////////////////////
+Route::resource('/coordenador', 'CoordenadorController', [
+    'middleware' => 'jwt.auth'
+]);
+Route::resource('/supervisor', 'SupervisorController', [
+    'middleware' => 'jwt.auth'
+]);
 Route::resource('/aluno', 'AlunoController', [
     'middleware' => 'jwt.auth'
 ]);
+/////////////////////////////////////////////////
+Route::resource('/vaga', 'VagaController', [
+    'middleware' => 'jwt.auth'
+]);
+Route::resource('/solicitacao', 'SolicitacaoController', [
+    'middleware' => 'jwt.auth'
+]);
+

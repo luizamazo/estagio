@@ -5,28 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Empresa;
 use App\Log;
+use Response;
 use App\Endereco;
 
 class EmpresaController extends Controller
 {
     
-
-    public function __construct()
-    {
-         
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        $empr = Empresa::all();
-        return view('empresa.empresas', compact('empr'));
+        $empresas = Empresa::with('endereco')->get();
+        return Response::json([
+            'empresas' => $empresas
+        ], 200);
     }
 
   
     public function create()
     {
-        return view('empresa.novaempresa');
+      
     }
 
     
@@ -57,27 +53,34 @@ class EmpresaController extends Controller
         $log = new Log();
         $log->log('criou', 'empresa', $target);
 
-        return redirect('/empresa');
+        return Response::json([
+            'msg' => 'deu bom'
+        ], 201);
     }
 
  
     public function show($id)
     {  
        
-        $empr = Empresa::where('id', $id)->get();
-     
-        return view('empresa.empresa-id', compact('empr'));
+       // $empresa = Empresa::where('id', $id)->get();
+       $empresa = Empresa::where('id', $id)->with('endereco')->get();
+       
+       return Response::json([
+        'empresa' => $empresa
+     ], 201);
+
     }
 
   
     public function edit($id)
     {
         
-        $empr = Empresa::find($id);
+       /* $empr = Empresa::find($id);
         if(isset($empr)) {
             return view('empresa.editarempresa', compact('empr'));
         }
         return redirect('/empresa-id');
+        */
     }
 
 
@@ -105,7 +108,10 @@ class EmpresaController extends Controller
             $log = new Log();
             $log->log('editou', 'empresa', $target);
         }
-        return redirect('/empresa');
+
+        return Response::json([
+            'msg' => 'update ok'
+         ], 201);
     }
 
     
@@ -121,6 +127,9 @@ class EmpresaController extends Controller
             $target = $empr->nome;
             $log->log('deletou', 'empresa', $target);
         }
-        return redirect('/empresa');
+        
+       return Response::json([
+            'msg' => 'deletado ok'
+         ], 201);
     }
 }

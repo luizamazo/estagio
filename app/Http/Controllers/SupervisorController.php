@@ -10,32 +10,36 @@ use App\Supervisor;
 use App\Log;
 use App\Pessoa;
 use App\Telefone;
+use Response;
 
 class SupervisorController extends Controller
 {
- 
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        $super = Supervisor::all();
-        return view('supervisor.supervisores', compact('super'));
+        $supervisores = Supervisor::with('pessoa', 'telefone', 'empresa')->get();
+        return Response::json([
+            'supervisores' => $supervisores
+        ], 200);
     }
 
  
     public function create()
     {
-        $empresa = Empresa::all();
-        return view('supervisor.novosupervisor', compact('empresa'));
+        $empresas = Empresa::all();
+
+        return Response::json([
+            'empresas' => $empresas         
+        ], 201);
     }
 
   
     public function store(Request $request)
     {
+        $role = $request->input('role');
+            
+        app('App\Http\Controllers\UserController')->register($request, $role);
+
         $pessoa = new Pessoa();
         $target = $pessoa->nome = $request->input('nome');
         $pessoa->nascimento = $request->input('nascimento');
@@ -66,16 +70,19 @@ class SupervisorController extends Controller
         $log = new Log();
         $log->log('criou', 'supervisor', $target);
 
-        return redirect('/supervisor');
+        return Response::json([
+            'msg' => 'deu bom'
+        ], 201);
     }
 
   
     public function show($id)
     {  
        
-        $super = Supervisor::where('id', $id)->get();
-     
-        return view('supervisor.supervisor-id', compact('super'));
+        $supervisor = Supervisor::where('id', $id)->with('pessoa', 'telefone', 'empresa')->get();
+        return Response::json([
+           'supervisor' => $supervisor
+        ], 201);
     }
 
    
@@ -89,14 +96,14 @@ class SupervisorController extends Controller
         }
     }
 
-
-    
     public function update(Request $request, $id)
-    {
-        $target = $request->input('nome');
+    {   
+  
         $super = Supervisor::find($id);
+
         if(isset($super)) {
-            $super->pessoa()->where('id', $super->pessoa_id)->update(['nome'=> $request->input('nome')]);
+            $target = $super->pessoa()->where('id', $super->pessoa_id)->get()->first()->nome;
+
             $super->telefone()->where('id', $super->tel_id)->update([
                 'fixo' => $request->input('fixo'),
                 'celular' => $request->input('celular')
@@ -110,7 +117,10 @@ class SupervisorController extends Controller
             $log = new Log();
             $log->log('editou', 'supervisor', $target);
         }
-        return redirect('/supervisor');
+
+        return Response::json([
+            'msg' => 'update ok'
+         ], 201);
     }
 
 
@@ -118,6 +128,7 @@ class SupervisorController extends Controller
     {
         $tel_id = Supervisor::where('id', $id)->first()->tel_id;
         $pessoa_id = Supervisor::where('id', $id)->first()->pessoa_id;
+        $user_id = Pessoa::where('id', $pessoa_id)->first()->user_id;
         $target = Pessoa::where('id', $pessoa_id)->first()->nome;
         
         $pessoa = Pessoa::find($pessoa_id);
@@ -126,9 +137,16 @@ class SupervisorController extends Controller
         $tel = Telefone::find($tel_id);
         $tel->delete();
 
+        $user = User::find($user_id);
+        $user->delete();
+
         $log = new Log();
         $log->log('deletou', 'supervisor', $target);
+
+        return Response::json([
+            'msg' => 'deletado ok'
+         ], 201);
     
-        return redirect('/supervisor');
     }
+    
 }

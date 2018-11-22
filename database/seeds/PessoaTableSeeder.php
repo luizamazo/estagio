@@ -13,7 +13,7 @@ class PessoaTableSeeder extends Seeder
             'nascimento' => '1996-02-06',
             'rg' => '123456',
             'cpf' => '78598636525',
-            'user_id' => 1,
+            'user_id' => 2,
             'email' => 'lana@hotmail.com'
         ]);
 
@@ -22,7 +22,7 @@ class PessoaTableSeeder extends Seeder
             'nascimento' => '2016-10-08',
             'rg' => '789456',
             'cpf' => '66666666666',
-            'user_id' => 2,
+            'user_id' => 3,
             'email' => 'sansa@hotmail.com'
         ]);
         
@@ -31,7 +31,7 @@ class PessoaTableSeeder extends Seeder
             'nascimento' => '1998-12-06',
             'rg' => '654321',
             'cpf' => '88888888888',
-            'user_id' => 3,
+            'user_id' => 4,
             'email' => 'troste@hotmail.com'
         ]);
     }

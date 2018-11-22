@@ -25,4 +25,5 @@ class Pessoa extends Model
     public function aluno(){
         return $this->hasOne(Aluno::class);
     }
+
 }

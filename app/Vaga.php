@@ -21,7 +21,7 @@ class Vaga extends Model
     public function coordenador(){
         return $this->belongsTo(Coordenador::class, 'coor_id');
     }
-
+    
     public function solicitacao(){
         return $this->hasMany(Solicitacao::class);
     }

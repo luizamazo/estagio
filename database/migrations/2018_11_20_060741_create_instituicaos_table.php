@@ -18,7 +18,7 @@ class CreateInstituicaosTable extends Migration
             $table->string('cnpj')->unique();
             $table->string('telefone');
             $table->unsignedInteger('end_id');
-            $table->foreign('end_id')->references('id')->on('enderecos')->onDelete('cascade');
+            $table->foreign('end_id')->references('id')->on('enderecos');
             $table->timestamps();
         });
     }

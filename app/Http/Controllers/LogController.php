@@ -18,8 +18,7 @@ class LogController extends Controller
     
     public function destroy()
     {
-       $logs = Log::all();
-       $logs->truncate();
+       Log::truncate();
        return response()->json(['msg' => 'deletou'], 200);
     }
 }

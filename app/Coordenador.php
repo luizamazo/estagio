@@ -35,4 +35,8 @@ class Coordenador extends Model
         return $this->belongsTo(Curso::class, 'curso_id');
     }
 
+    public function vaga(){
+        return $this->hasMany(Vaga::class);
+    }
+
 }

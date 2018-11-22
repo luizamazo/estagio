@@ -6,6 +6,11 @@ use Tymon\JWTAuth\Exception\JWTException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Aluno;
+use App\Pessoa;
+use App\Coordenador;
+use App\Supervisor;
+use Response;
 use JWTAuth;
 
 class UserController extends Controller {
@@ -57,11 +62,42 @@ class UserController extends Controller {
         }
       //  $user = JWTAuth::parseToken()->toUser();
       $user = User::where('email', $request->input('email'))->first();
-        //se deu certo, token é enviado lá pro front
+      $role = User::where('email', $request->input('email'))->get()->first()->role;
+     
+      $user_id = User::where('email', $request->input('email'))->get()->first()->id;
+
+      if($role === 'ALUNO'){
+        $pessoa = Pessoa::where('user_id', $user_id)->get()->first()->id;
+        $aluno = Aluno::where('pessoa_id', $pessoa)->get()->first()->id;
         return response()->json([
+            'token' => $token,
+            'user' => $user,
+            'aluno_id' => $aluno
+        ], 200);
+      }else if($role === 'COORDENADOR'){
+        $pessoa = Pessoa::where('user_id', $user_id)->get()->first()->id;
+        $coordenador = Coordenador::where('pessoa_id', $pessoa)->get()->first()->id;
+        return response()->json([
+            'token' => $token,
+            'user' => $user,
+            'coor_id' => $coordenador
+        ], 200);
+      }else if($role === 'SUPERVISOR'){
+        $pessoa = Pessoa::where('user_id', $user_id)->get()->first()->id;
+        $supervisor = Supervisor::where('pessoa_id', $pessoa)->get()->first()->id;
+        return response()->json([
+            'token' => $token,
+            'user' => $user,
+            'super_id' => $supervisor
+        ], 200);
+      }else{
+          //se deu certo, token é enviado lá pro front
+          return response()->json([
             'token' => $token,
             'user' => $user
         ], 200);
+      }  
+      
     }
 
     public function logout(){

@@ -56,7 +56,9 @@ class AlunoController extends Controller
             'cpf' => 'required',
             'rg'=>'required',
             'rga'=>'required',
-            'email' => 'required|email|unique:pessoas'
+            'email' => 'required|email|unique:pessoas',
+            'instituicao' => 'required',
+            'curso' => 'required'
             ]); 
             
             $pessoa = new Pessoa();
@@ -118,14 +120,18 @@ class AlunoController extends Controller
 
     public function edit($id)
     {
-        $inst = Instituicao::all();
-        $campus = Campus::all();
-        $curso = Curso::all();
-        $alu = Aluno::find($id);
-        if(isset($alu)) {
-            return view('aluno.editaraluno', compact('alu', 'inst', 'campus', 'curso'));
-        }
-        return redirect('/aluno/{id}');
+        $cursos = Curso::all();
+        $instituicoes = Instituicao::all();
+        $campuses = Campus::all();
+        
+        $aluno = Aluno::find($id);
+    
+        return Response::json([
+            'cursos' => $cursos, 
+            'instituicoes' => $instituicoes,
+            'campuses' => $campuses
+        ], 201);
+
     }
 
     public function update(Request $request, $id)
@@ -133,7 +139,7 @@ class AlunoController extends Controller
         $alu = Aluno::find($id);
         if(isset($alu)) {
            
-            //entro na tabela pessoa, busco o id dela q é igual ao id de pessoa_id dentro de aluno, update no nome apenas
+            //entro na tabela pessoa, busco o id dela q é igual ao id de pessoa_id dentro de aluno, pego o nome apenas
             //$alu->pessoa()->where('id', $alu->pessoa_id)->update(['nome'=> $request->input('nome')]);
             $target = $alu->pessoa()->where('id', $alu->pessoa_id)->get()->first()->nome;
 
@@ -188,6 +194,10 @@ class AlunoController extends Controller
 
         $log = new Log();
         $log->log('deletou', 'aluno', $target);
-    
+
+        return Response::json([
+            'msg' => 'deletado ok'
+         ], 201);
     }
+    
 }

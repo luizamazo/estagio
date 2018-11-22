@@ -26,4 +26,8 @@ class Supervisor extends Model
         return $this->belongsTo(Telefone::class, 'tel_id');
     }
 
+    public function vaga(){
+        return $this->hasOne(Vaga::class);
+    }
+
 }

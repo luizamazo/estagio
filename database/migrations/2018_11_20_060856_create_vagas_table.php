@@ -14,6 +14,7 @@ class CreateVagasTable extends Migration
             $table->string('titulo');
             $table->string('area');
             $table->text('requisitos');
+            $table->string('responsavel');
 
             $table->unsignedInteger('coor_id');
             $table->foreign('coor_id')->references('id')->on('coordenadors');

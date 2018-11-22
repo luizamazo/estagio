@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Curso;
+use Response;
 use App\Instituicao;
 use App\Log;
 use App\Campus;
@@ -11,26 +12,25 @@ use App\Campus;
 class CursoController extends Controller
 {
    
-
-    public function __construct()
-    {
-      
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
       
-       $curso = Curso::with('instituicao')->get();
-        return view('curso.cursos', compact('curso'));
+       $cursos = Curso::with('instituicao', 'campus')->get();
+        return Response::json([
+            'instituicoes' => $instituicoes
+        ], 200);
     }
 
     
     public function create()
     {
-        $inst = Instituicao::all();
-        $campus = Campus::all();
-        return view('curso.novocurso', compact('inst', 'campus'));
+        $instituicoes = Instituicao::all();
+        $campuses = Campus::all();
+
+        return Response::json([
+            'instituicoes' => $instituicoes,
+            'campuses' => $campuses
+        ], 201);
     }
 
   
@@ -45,7 +45,9 @@ class CursoController extends Controller
         $log = new Log();
         $log->log('criou', 'curso', $target);
 
-        return redirect('/instituicao');
+        return Response::json([
+            'msg' => 'deu bom'
+        ], 201);
     }
 
    
@@ -58,6 +60,9 @@ class CursoController extends Controller
             $target = $curso->nome;
             $log->log('deletou', 'curso', $target);
         }
-        return redirect('/instituicao');
+        
+        return Response::json([
+            'msg' => 'deletado ok'
+         ], 201);
     }
 }
