@@ -39,4 +39,8 @@ class Coordenador extends Model
         return $this->hasMany(Vaga::class);
     }
 
+    public function solicitacao(){
+        return $this->hasOne(Solicitacao::class);
+    }
+
 }

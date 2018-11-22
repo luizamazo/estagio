@@ -64,7 +64,24 @@ Route::resource('/aluno', 'AlunoController', [
 Route::resource('/vaga', 'VagaController', [
     'middleware' => 'jwt.auth'
 ]);
-Route::resource('/solicitacao', 'SolicitacaoController', [
+Route::post('/solicitacao/{id}', 'SolicitacaoController@store', [
     'middleware' => 'jwt.auth'
 ]);
+Route::get('/solicitacao/{id}', 'SolicitacaoController@show', [
+    'middleware' => 'jwt.auth'
+]);
+Route::get('/solicitacao/aluno/{id}', 'SolicitacaoController@showAluno', [
+    'middleware' => 'jwt.auth'
+]);
+Route::post('/solicitacao/fb/{id}', 'SolicitacaoController@update',[
+    'middleware' => 'jwt.auth'
+]);
+///////////////////////////////////////////////
+Route::post('/estagio/{id}', 'EstagioController@store', [
+    'middleware' => 'jwt.auth'
+]);
+Route::post('/estagio/{id}', 'EstagioController@show', [
+    'middleware' => 'jwt.auth'
+]);
+
 

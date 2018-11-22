@@ -30,4 +30,8 @@ class Supervisor extends Model
         return $this->hasOne(Vaga::class);
     }
 
+    public function solicitacao(){
+        return $this->hasOne(Solicitacao::class);
+    }
+
 }

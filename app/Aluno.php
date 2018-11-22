@@ -38,7 +38,7 @@ class Aluno extends Model
     }
     //////////////////////////////
 
-    public function createAluno(){
-
+    public function solicitacao(){
+        return $this->hasOne(Solicitacao::class);
     }
 }

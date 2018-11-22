@@ -15,6 +15,7 @@ class CreateSolicitacaosTable extends Migration
             $table->date('nascimento');
             $table->string('cpf');
             $table->string('rga');
+            $table->string('rg');
             $table->string('fixo')->nullable();
             $table->string('celular');
     
@@ -22,6 +23,7 @@ class CreateSolicitacaosTable extends Migration
             $table->date('estagioFinal');
             $table->text('tarefas');
             $table->string('status');
+            $table->string('carga');
 
             $table->unsignedInteger('vaga_id');
             $table->foreign('vaga_id')->references('id')->on('vagas');
